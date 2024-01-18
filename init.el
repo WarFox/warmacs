@@ -1,5 +1,64 @@
 ;; Example Elpaca configuration -*- lexical-binding: t; -*-
 
+(setq
+
+ inhibit-startup-message t ; No startup message
+
+ highlight-nonselected-windows nil
+
+ max-lisp-eval-depth 10000 ; default 1600 is too low
+
+ max-specpdl-size 10000 ; default 2500 is too low
+
+ ;; More performant rapid scrolling over unfontified regions. May cause brief
+ ;; spells of inaccurate syntax highlighting right after scrolling, which should
+ ;; quickly self-correct.
+ fast-but-imprecise-scrolling t
+
+ ;; Don't ping things that look like domain names.
+ ffap-machine-p-known 'reject
+
+ ;; Resizing the Emacs frame can be a terribly expensive part of changing the
+ ;; font. By inhibiting this, we halve startup times, particularly when we use
+ ;; fonts that are larger than the system default (which would resize the frame).
+ frame-inhibit-implied-resize t
+
+ ;; The GC introduces annoying pauses and stuttering into our Emacs experience,
+ ;; so we use `gcmh' to stave off the GC while we're using Emacs, and provoke it
+ ;; when it's idle. However, if the idle delay is too long, we run the risk of
+ ;; runaway memory usage in busy sessions. If it's too low, then we may as well
+ ;; not be using gcmh at all.
+ gcmh-idle-delay 'auto  ; default is 15s
+ gcmh-auto-idle-delay-factor 10
+ gcmh-high-cons-threshold (* 32 1024 1024)  ; 32mb
+
+ ;; Emacs "updates" its ui more often than it needs to, so slow it down slightly
+ idle-update-delay 1.0  ; default is 0.5
+
+ ;; Font compacting can be terribly expensive, especially for rendering icon
+ ;; fonts on Windows. Whether disabling it has a notable affect on Linux and Mac
+ ;; hasn't been determined, but do it there anyway, just in case. This increases
+ ;; memory usage, however!
+ inhibit-compacting-font-caches t
+
+ ;; PGTK builds only: this timeout adds latency to frame operations, like
+ ;; `make-frame-invisible', which are frequently called without a guard because
+ ;; it's inexpensive in non-PGTK builds. Lowering the timeout from the default
+ ;; 0.1 should make childframes and packages that manipulate them (like `lsp-ui',
+ ;; `company-box', and `posframe') feel much snappier. See emacs-lsp/lsp-ui#613.
+ pgtk-wait-for-event-timeout 0.001
+
+ ;; Increase how much is read from processes in a single chunk (default is 4kb).
+ ;; This is further increased elsewhere, where needed (like our LSP layer).
+ read-process-output-max (* 64 1024)  ; 64kb
+
+ ;; Introduced in Emacs HEAD (b2f8c9f), this inhibits fontification while
+ ;; receiving input, which should help a little with scrolling performance.
+ redisplay-skip-fontification-on-input t)
+
+
+;; elpaca
+
 (defvar elpaca-installer-version 0.6)
 (defvar elpaca-directory (expand-file-name "elpaca/" user-emacs-directory))
 (defvar elpaca-builds-directory (expand-file-name "builds/" elpaca-directory))
@@ -40,11 +99,6 @@
 ;; Uncomment for systems which cannot create symlinks:
 ;; (elpaca-no-symlink-mode)
 
-;; Install a package via the elpaca macro
-;; See the "recipes" section of the manual for more details.
-
-;; (elpaca example-package)
-
 ;; Install use-package support
 (elpaca elpaca-use-package
   ;; Enable :elpaca use-package keyword.
@@ -68,7 +122,6 @@
   :config
   (evil-mode))
 
-
 ;; setup keybindings
 (use-package which-key
   :config
@@ -88,7 +141,6 @@
     warmacs-local-leader-key ",")
   (general-evil-setup)
   :config
-
   ;; Spacemacs-like menu
   ;; https://gist.github.com/progfolio/1c96a67fcec7584b31507ef664de36cc
   ;; https://www.reddit.com/r/emacs/comments/des3cl/comment/f2yw45k/?utm_source=share&utm_medium=web2x&context=3
@@ -114,10 +166,13 @@
 ;;Turns off elpaca-use-package-mode current declaration
 ;;Note this will cause the declaration to be interpreted immediately (not deferred).
 ;;Useful for configuring built-in emacs features.
-(use-package emacs :elpaca nil :config (setq ring-bell-function #'ignore))
+(use-package emacs
+  :elpaca nil
+  :config (setq ring-bell-function #'ignore))
 
 ;; Don't install anything. Defer execution of BODY
-(elpaca nil (message "deferred"))
+(elpaca nil
+  (message "deferred"))
 
 ;; Local Variables:
 ;; no-byte-compile: t
