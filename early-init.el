@@ -1,4 +1,4 @@
-;; Example Elpaca early-init.el -*- lexical-binding: t; -*-
+;; early-init.el -*- lexical-binding: t; -*-
 
 (setq package-enable-at-startup nil)
 
@@ -26,34 +26,20 @@ package-enable-at-startup nil
 ;; We want to start with the simplest shell available for speed
 shell-file-name "/bin/sh")
 
-;; Inhibit premature redisplays
-(unless (or (daemonp)
-          noninteractive
-          init-file-debug)
+;;
+;;; Bootstrap
 
-  ;; Premature redisplays can substantially affect startup times and produce
-  ;; ugly flashes of unstyled Emacs.
-  (setq-default inhibit-redisplay t
-                inhibit-message t)
-  (add-hook 'window-setup-hook
-            (lambda ()
-              (setq-default inhibit-redisplay nil
-                            inhibit-message nil)
-              (redisplay)))
+;; Ensure warmacs is running out of this file's directory
+(setq user-emacs-directory (file-name-directory load-file-name))
 
-  ;; Site files tend to use `load-file', which emits "Loading X..." messages in
-  ;; the echo area, which in turn triggers a redisplay. Redisplays can have a
-  ;; substantial effect on startup times and in this case happens so early that
-  ;; Emacs may flash white while starting up.
-  (define-advice load-file (:override (file) silence)
-    (load file nil :nomessage))
-
-  ;; Undo our `load-file' advice above, to limit the scope of any edge cases it
-  ;; may introduce down the road.
-  (define-advice startup--load-user-init-file (:before (&rest _) init-warmacs)
-    (advice-remove #'load-file #'load-file@silence)))
-
-
+(let ((load-suffixes '(".elc" ".el")))
+  ;; ;; Load the core of Warmacs
+  (load (expand-file-name "lisp/warmacs" user-emacs-directory)
+    nil (not init-file-debug) nil 'must-suffix)
+  ;; Undo settings
+  (setq load-prefer-newer t)
+  ;; 16MB
+  (setq gc-cons-threshold (* 16 1024 1024)))
 
 ;; Local Variables:
 ;; no-byte-compile: t

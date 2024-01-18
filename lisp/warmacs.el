@@ -1,61 +1,102 @@
-;; Example Elpaca configuration -*- lexical-binding: t; -*-
+;; warmacs.el -*- lexical-binding: t; -*-
 
-(setq
+;; Start up Optimisations
 
- inhibit-startup-message t ; No startup message
+(unless (or (daemonp)
+          noninteractive
+          init-file-debug)
 
- highlight-nonselected-windows nil
+  ;; Premature redisplays can substantially affect startup times and produce
+  ;; ugly flashes of unstyled Emacs.
+  (setq-default
+    inhibit-redisplay t
+    inhibit-message t)
 
- max-lisp-eval-depth 10000 ; default 1600 is too low
+  (add-hook 'window-setup-hook
+    (lambda ()
+      (setq-default inhibit-redisplay nil
+        inhibit-message nil)
+      (redisplay)))
 
- max-specpdl-size 10000 ; default 2500 is too low
+  ;; Site files tend to use `load-file', which emits "Loading X..." messages in
+  ;; the echo area, which in turn triggers a redisplay. Redisplays can have a
+  ;; substantial effect on startup times and in this case happens so early that
+  ;; Emacs may flash white while starting up.
+  (define-advice load-file (:override (file) silence)
+    (load file nil :nomessage))
 
- ;; More performant rapid scrolling over unfontified regions. May cause brief
- ;; spells of inaccurate syntax highlighting right after scrolling, which should
- ;; quickly self-correct.
- fast-but-imprecise-scrolling t
+  ;; Undo our `load-file' advice above, to limit the scope of any edge cases it
+  ;; may introduce down the road.
+  (define-advice startup--load-user-init-file (:before (&rest _) init-warmacs)
+    (advice-remove #'load-file #'load-file@silence))
 
- ;; Don't ping things that look like domain names.
- ffap-machine-p-known 'reject
+  (setq
 
- ;; Resizing the Emacs frame can be a terribly expensive part of changing the
- ;; font. By inhibiting this, we halve startup times, particularly when we use
- ;; fonts that are larger than the system default (which would resize the frame).
- frame-inhibit-implied-resize t
+    inhibit-startup-message t ; No startup message
 
- ;; The GC introduces annoying pauses and stuttering into our Emacs experience,
- ;; so we use `gcmh' to stave off the GC while we're using Emacs, and provoke it
- ;; when it's idle. However, if the idle delay is too long, we run the risk of
- ;; runaway memory usage in busy sessions. If it's too low, then we may as well
- ;; not be using gcmh at all.
- gcmh-idle-delay 'auto  ; default is 15s
- gcmh-auto-idle-delay-factor 10
- gcmh-high-cons-threshold (* 32 1024 1024)  ; 32mb
+    highlight-nonselected-windows nil
 
- ;; Emacs "updates" its ui more often than it needs to, so slow it down slightly
- idle-update-delay 1.0  ; default is 0.5
+    max-lisp-eval-depth 10000 ; default 1600 is too low
 
- ;; Font compacting can be terribly expensive, especially for rendering icon
- ;; fonts on Windows. Whether disabling it has a notable affect on Linux and Mac
- ;; hasn't been determined, but do it there anyway, just in case. This increases
- ;; memory usage, however!
- inhibit-compacting-font-caches t
+    max-specpdl-size 10000 ; default 2500 is too low
 
- ;; PGTK builds only: this timeout adds latency to frame operations, like
- ;; `make-frame-invisible', which are frequently called without a guard because
- ;; it's inexpensive in non-PGTK builds. Lowering the timeout from the default
- ;; 0.1 should make childframes and packages that manipulate them (like `lsp-ui',
- ;; `company-box', and `posframe') feel much snappier. See emacs-lsp/lsp-ui#613.
- pgtk-wait-for-event-timeout 0.001
+    ;; More performant rapid scrolling over unfontified regions. May cause brief
+    ;; spells of inaccurate syntax highlighting right after scrolling, which should
+    ;; quickly self-correct.
+    fast-but-imprecise-scrolling t
 
- ;; Increase how much is read from processes in a single chunk (default is 4kb).
- ;; This is further increased elsewhere, where needed (like our LSP layer).
- read-process-output-max (* 64 1024)  ; 64kb
+    ;; Don't ping things that look like domain names.
+    ffap-machine-p-known 'reject
 
- ;; Introduced in Emacs HEAD (b2f8c9f), this inhibits fontification while
- ;; receiving input, which should help a little with scrolling performance.
- redisplay-skip-fontification-on-input t)
+    ;; Resizing the Emacs frame can be a terribly expensive part of changing the
+    ;; font. By inhibiting this, we halve startup times, particularly when we use
+    ;; fonts that are larger than the system default (which would resize the frame).
+    frame-inhibit-implied-resize t
 
+    ;; The GC introduces annoying pauses and stuttering into our Emacs experience,
+    ;; so we use `gcmh' to stave off the GC while we're using Emacs, and provoke it
+    ;; when it's idle. However, if the idle delay is too long, we run the risk of
+    ;; runaway memory usage in busy sessions. If it's too low, then we may as well
+    ;; not be using gcmh at all.
+    gcmh-idle-delay 'auto  ; default is 15s
+    gcmh-auto-idle-delay-factor 10
+    gcmh-high-cons-threshold (* 32 1024 1024)  ; 32mb
+
+    ;; Emacs "updates" its ui more often than it needs to, so slow it down slightly
+    idle-update-delay 1.0  ; default is 0.5
+
+    ;; Font compacting can be terribly expensive, especially for rendering icon
+    ;; fonts on Windows. Whether disabling it has a notable affect on Linux and Mac
+    ;; hasn't been determined, but do it there anyway, just in case. This increases
+    ;; memory usage, however!
+    inhibit-compacting-font-caches t
+
+    ;; PGTK builds only: this timeout adds latency to frame operations, like
+    ;; `make-frame-invisible', which are frequently called without a guard because
+    ;; it's inexpensive in non-PGTK builds. Lowering the timeout from the default
+    ;; 0.1 should make childframes and packages that manipulate them (like `lsp-ui',
+    ;; `company-box', and `posframe') feel much snappier. See emacs-lsp/lsp-ui#613.
+    pgtk-wait-for-event-timeout 0.001
+
+    ;; Increase how much is read from processes in a single chunk (default is 4kb).
+    ;; This is further increased elsewhere, where needed (like our LSP layer).
+    read-process-output-max (* 64 1024)  ; 64kb
+
+    ;; Introduced in Emacs HEAD (b2f8c9f), this inhibits fontification while
+    ;; receiving input, which should help a little with scrolling performance.
+    redisplay-skip-fontification-on-input t))
+
+;;
+;;; Directory variables
+
+(defvar warmacs-emacs-dir user-emacs-directory
+  "The path to the currently loaded .emacs.d directory. Must end with a slash.")
+
+(defconst warmacs-core-dir (file-name-directory load-file-name)
+  "The root directory of Warmacs's core files. Must end with a slash.")
+
+(defvar warmacs-layers-dir (expand-file-name "layers/" warmacs-emacs-dir)
+  "The root directory for Warmacs's modules. Must end with a slash.")
 
 ;; elpaca
 
@@ -179,3 +220,5 @@
 ;; no-native-compile: t
 ;; no-update-autoloads: t
 ;; End:
+
+(provide 'warmacs)
