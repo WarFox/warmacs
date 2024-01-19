@@ -41,6 +41,9 @@ shell-file-name "/bin/sh")
   ;; 16MB
   (setq gc-cons-threshold (* 16 1024 1024)))
 
+;; start warmacs
+(require 'warmacs-start)
+
 ;; Local Variables:
 ;; no-byte-compile: t
 ;; no-native-compile: t
