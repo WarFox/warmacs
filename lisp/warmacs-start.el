@@ -105,6 +105,9 @@
 ;;
 ;; Start Warmacs
 (require 'warmacs-packages)
+(require 'warmacs-ui)
+(require 'warmacs-keybindings)
+(require 'warmacs-treemacs)
 
 ;; Local Variables:
 ;; no-byte-compile: t

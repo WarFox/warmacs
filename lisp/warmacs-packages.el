@@ -51,6 +51,9 @@
   ;; Assume :elpaca t unless otherwise specified.
   (setq elpaca-use-package-by-default t))
 
+;; Block until current queue processed.
+(elpaca-wait)
+
 ;; Expands to: (elpaca evil (use-package evil :demand t))
 (use-package evil
   :demand t
@@ -83,7 +86,5 @@
   :elpaca nil
   :config (setq ring-bell-function #'ignore))
 
-;; Block until current queue processed.
-(elpaca-wait)
 
 (provide 'warmacs-packages)
