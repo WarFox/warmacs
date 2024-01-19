@@ -108,6 +108,7 @@
 (require 'warmacs-ui)
 (require 'warmacs-keybindings)
 (require 'warmacs-treemacs)
+(require 'warmacs-editor)
 
 ;; Local Variables:
 ;; no-byte-compile: t

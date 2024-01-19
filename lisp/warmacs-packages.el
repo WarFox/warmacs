@@ -54,11 +54,18 @@
 ;; Block until current queue processed.
 (elpaca-wait)
 
-;; Expands to: (elpaca evil (use-package evil :demand t))
 (use-package evil
   :demand t
+  :init
+  (setq evil-want-integration t) ;; This is optional since it's already set to t by default.
+  (setq evil-want-keybinding nil)
   :config
-  (evil-mode))
+  (evil-mode 1))
+
+(use-package evil-collection
+  :after evil
+  :config
+  (evil-collection-init))
 
 ;; Elpaca checks for versions requirements
 ;; Magit needs seq version higher than the one bundled with emacs
