@@ -77,26 +77,6 @@
     "F" #'toggle-frame-fullscreen)
 
   (warmacs/leader-menu "Kill Ring" "r"
-    "y" #'consult-yank-from-kill-ring)
-
-  (defun toggle-maximize-buffer ()
-    "Maximize buffer."
-    (interactive)
-    (save-excursion
-      (if (and (= 1 (length (cl-remove-if
-			     (lambda (w)
-			       (or (and (fboundp 'treemacs-is-treemacs-window?)
-					(treemacs-is-treemacs-window? w))
-				   (and (bound-and-true-p neo-global--window)
-					(eq neo-global--window w))))
-			     (window-list))))
-	       (assoc ?_ register-alist))
-	  (jump-to-register ?_)
-	(window-configuration-to-register ?_)
-	(delete-other-windows))))
-
-  (warmacs/leader-menu "window" "w"
-    "w" #'other-window
-    "m" #'toggle-maximize-buffer))
+    "y" #'consult-yank-from-kill-ring))
 
 (provide 'warmacs-keybindings)

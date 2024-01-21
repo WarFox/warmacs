@@ -106,15 +106,18 @@
 ;; Start Warmacs
 (require 'warmacs-packages)
 (require 'warmacs-ui)
+;; keybindings, search and completions must be loaded before everything eles
 (require 'warmacs-keybindings)
 (require 'warmacs-completions)
 (require 'warmacs-search)
+;; load after the keybindings, search and completions
 (require 'warmacs-treemacs)
 (require 'warmacs-editor)
 (require 'warmacs-buffers)
 (require 'warmacs-files)
 (require 'warmacs-projects)
 (require 'warmacs-dashboard)
+(require 'warmacs-windows)
 
 ;; Local Variables:
 ;; no-byte-compile: t

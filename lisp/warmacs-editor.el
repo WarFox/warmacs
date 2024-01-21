@@ -13,6 +13,8 @@
 ;; Relative line numbers
 (setq display-line-numbers-type 'relative)
 
+(use-package editorconfig)
+
 ;; Enable line numbers in most text-editing modes. We avoid
 ;; `global-display-line-numbers-mode' because there are many special and
 ;; temporary modes where we don't need/want them.
