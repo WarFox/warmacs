@@ -86,6 +86,10 @@
   :after seq
   :ensure t)
 
+(use-package s)
+(use-package dash)
+(use-package jsonrpc)
+
 ;;Turns off elpaca-use-package-mode current declaration
 ;;Note this will cause the declaration to be interpreted immediately (not deferred).
 ;;Useful for configuring built-in emacs features.
