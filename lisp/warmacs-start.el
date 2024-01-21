@@ -118,6 +118,7 @@
 (require 'warmacs-projects)
 (require 'warmacs-dashboard)
 (require 'warmacs-windows)
+(require 'warmacs-restart)
 
 ;; Local Variables:
 ;; no-byte-compile: t
