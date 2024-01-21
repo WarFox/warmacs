@@ -107,8 +107,14 @@
 (require 'warmacs-packages)
 (require 'warmacs-ui)
 (require 'warmacs-keybindings)
+(require 'warmacs-completions)
+(require 'warmacs-search)
 (require 'warmacs-treemacs)
 (require 'warmacs-editor)
+(require 'warmacs-buffers)
+(require 'warmacs-files)
+(require 'warmacs-projects)
+(require 'warmacs-dashboard)
 
 ;; Local Variables:
 ;; no-byte-compile: t

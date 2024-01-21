@@ -26,7 +26,6 @@
   (general-use-package-emit-autoloads t)
   :init
   (general-evil-setup)
-  :config
   ;; Spacemacs-like menu
   ;; https://gist.github.com/progfolio/1c96a67fcec7584b31507ef664de36cc
   ;; https://www.reddit.com/r/emacs/comments/des3cl/comment/f2yw45k/?utm_source=share&utm_medium=web2x&context=3
@@ -59,10 +58,11 @@
        (,(intern (concat "warmacs/leader-menu-" name))
 	,@body)))
 
+  :config
   (warmacs/leader-keys
     "!" #'shell-command
     ":" #'eval-expression
-    "/" #'grep
+    "/" #'projectile-ripgrep
     "SPC" '(execute-extended-command :which-key "M-x"))
 
   (warmacs/leader-menu "applications" "a"
@@ -75,6 +75,9 @@
   (warmacs/leader-menu "toggle" "T"
     "f" #'toggle-frame-maximized
     "F" #'toggle-frame-fullscreen)
+
+  (warmacs/leader-menu "Kill Ring" "r"
+    "y" #'consult-yank-from-kill-ring)
 
   (defun toggle-maximize-buffer ()
     "Maximize buffer."
@@ -93,6 +96,7 @@
 	(delete-other-windows))))
 
   (warmacs/leader-menu "window" "w"
+    "w" #'other-window
     "m" #'toggle-maximize-buffer))
 
 (provide 'warmacs-keybindings)
