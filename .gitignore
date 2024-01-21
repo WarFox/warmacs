@@ -53,3 +53,4 @@ flycheck_*.el
 .cache/
 /transient/
 recentf
+projects

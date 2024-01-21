@@ -122,4 +122,8 @@
   ;; (setq consult-project-function nil)
 )
 
+(elpaca nil ;; defer
+      (warmacs/leader-keys
+       "/" #'consult-ripgrep))
+
 (provide 'warmacs-search)
