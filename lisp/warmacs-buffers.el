@@ -2,7 +2,8 @@
 
 (elpaca nil ;; defer
   (warmacs/leader-menu "Buffers" "b"
-    "b" #'consult-buffers
+    "b" #'consult-buffer
+    "d" #'kill-current-buffer
     "p" #'previous-buffer
     "n" #'next-buffer
     "o" #'((lambda ()
