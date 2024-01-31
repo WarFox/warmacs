@@ -105,9 +105,9 @@
 ;;
 ;; Start Warmacs
 (require 'warmacs-packages)
-(require 'warmacs-ui)
 ;; keybindings, search and completions must be loaded before everything eles
 (require 'warmacs-keybindings)
+(require 'warmacs-ui)
 (require 'warmacs-completions)
 (require 'warmacs-search)
 ;; load after the keybindings, search and completions
