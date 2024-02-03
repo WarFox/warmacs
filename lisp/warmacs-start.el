@@ -109,7 +109,6 @@
 (require 'warmacs-keybindings)
 (require 'warmacs-ui)
 (require 'warmacs-completions)
-(require 'warmacs-search)
 ;; load after the keybindings, search and completions
 (require 'warmacs-treemacs)
 (require 'warmacs-editor)
