@@ -84,12 +84,11 @@
 (use-package seq
   :ensure `(seq :build ,(+elpaca-seq-build-steps)))
 
-(use-package magit
-  :after seq
-  :ensure t)
 
+;; Setup basic packages
 (use-package s)
 (use-package dash)
+(use-package f)
 (use-package jsonrpc)
 
 ;; In order to turn off elpaca-use-package-mode for a given declaration, specify :ensure nil:

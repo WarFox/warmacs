@@ -1,4 +1,7 @@
 ;; warmacs-start.el -*- lexical-binding: t; -*-
+
+;; Start warmacs
+
 ;;
 ;;; Custom hooks
 
@@ -110,6 +113,7 @@
 (require 'warmacs-ui)
 (require 'warmacs-completions)
 ;; load after the keybindings, search and completions
+(require 'warmacs-vcs)
 (require 'warmacs-treemacs)
 (require 'warmacs-editor)
 (require 'warmacs-buffers)
@@ -119,6 +123,7 @@
 (require 'warmacs-windows)
 (require 'warmacs-restart)
 (require 'warmacs-ai)
+(require 'warmacs-help)
 
 ;; Local Variables:
 ;; no-byte-compile: t
