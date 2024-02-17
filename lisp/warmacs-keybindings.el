@@ -22,6 +22,8 @@
 
 ;; general
 (use-package general
+  :demand t
+  :ensure t
   :custom
   (general-use-package-emit-autoloads t)
   :init
@@ -59,6 +61,7 @@
 	,@body)))
 
   :config
+  ;; basic menu setup
   (warmacs/leader-keys
     "!" #'shell-command
     ":" #'eval-expression
@@ -78,5 +81,8 @@
 
   (warmacs/leader-menu "Kill Ring" "r"
     "y" #'consult-yank-from-kill-ring))
+
+;; Ensure general.el is configured
+(elpaca-wait)
 
 (provide 'warmacs-keybindings)

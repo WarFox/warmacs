@@ -121,15 +121,13 @@
   ;; (setq consult-project-function (lambda (_) (projectile-project-root)))
   ;;;; 5. No project support
   ;; (setq consult-project-function nil)
-)
+  :general
+  (warmacs/leader-keys
+    "/" #'consult-ripgrep))
 
 (use-package embark)
 
 (use-package embark-consult)
-
-(elpaca nil ;; defer
-  (warmacs/leader-keys
-     "/" #'consult-ripgrep))
 
 ;; Enable vertico
 (use-package vertico

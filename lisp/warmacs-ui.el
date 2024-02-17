@@ -28,8 +28,8 @@
   (column-number-mode 1)
   (size-indication-mode 1))
 
-(elpaca nil
-  (use-package centaur-tabs
+
+(use-package centaur-tabs
   :custom
   (centaur-tabs-set-icons t)
   (centaur-tabs-set-modified-marker t)
@@ -59,7 +59,7 @@
             "g t"      'centaur-tabs-forward
             "g T"      'centaur-tabs-backward
             "g C-t"    'centaur-tabs-move-current-tab-to-right
-            "g C-S-t"  'centaur-tabs-move-current-tab-to-left)))
+            "g C-S-t"  'centaur-tabs-move-current-tab-to-left))
 
 ;; Local Variables:
 ;; no-byte-compile: t
