@@ -4,7 +4,7 @@
 
 ;; GitHub Copilot
 (use-package copilot
-  :elpaca
+  :ensure
   (:host github :repo "copilot-emacs/copilot.el" :files ("dist" "*.el"))
   :hook
   (prog-mode . copilot-mode))

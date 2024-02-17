@@ -19,7 +19,7 @@
 ;; `global-display-line-numbers-mode' because there are many special and
 ;; temporary modes where we don't need/want them.
 (use-package emacs
-  :elpaca nil
+  :ensure nil
   :hook
   ((prog-mode text-mode conf-mode) . #'display-line-numbers-mode))
 

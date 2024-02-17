@@ -1,5 +1,6 @@
 ;; early-init.el -*- lexical-binding: t; -*-
 
+;; Disable package, we use elpaca.el
 (setq package-enable-at-startup nil)
 
 ;; Fast startup tricks from Doom emacs

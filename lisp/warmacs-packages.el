@@ -46,12 +46,13 @@
 
 ;; Install use-package support
 (elpaca elpaca-use-package
-  ;; Enable :elpaca use-package keyword.
+  ;; Enable Elpaca support for use-package's :ensure keyword.
   (elpaca-use-package-mode)
-  ;; Assume :elpaca t unless otherwise specified.
-  (setq elpaca-use-package-by-default t))
+  ;; Assume :ensure t unless specified otherwise
+  (setq use-package-always-ensure t))
 
 ;; Block until current queue processed.
+;; Necessary to use the Elpaca's `:ensure` support after this point
 (elpaca-wait)
 
 (use-package evil
@@ -67,9 +68,10 @@
   :config
   (evil-collection-init))
 
-;; Elpaca checks for versions requirements
-;; Magit needs seq version higher than the one bundled with emacs
-;; So we onload and install seq
+;; Unload and install seq, we need seq version higher than the one bundled with emacs
+
+;; Elpaca checks for version requirement
+;; Magit needs seq version higher than the one bundled with emacs 30.1
 (defun +elpaca-unload-seq (e)
   (and (featurep 'seq) (unload-feature 'seq t))
   (elpaca--continue-build e))
@@ -80,7 +82,7 @@
           (list '+elpaca-unload-seq 'elpaca--activate-package)))
 
 (use-package seq
-  :elpaca `(seq :build ,(+elpaca-seq-build-steps)))
+  :ensure `(seq :build ,(+elpaca-seq-build-steps)))
 
 (use-package magit
   :after seq
@@ -90,12 +92,11 @@
 (use-package dash)
 (use-package jsonrpc)
 
-;;Turns off elpaca-use-package-mode current declaration
-;;Note this will cause the declaration to be interpreted immediately (not deferred).
-;;Useful for configuring built-in emacs features.
+;; In order to turn off elpaca-use-package-mode for a given declaration, specify :ensure nil:
+;; Note this will cause the declaration to be interpreted immediately (not deferred).
+;; `emacs' is a pseudo-feature which can be used to configure built-in functionality.
 (use-package emacs
-  :elpaca nil
+  :ensure nil
   :config (setq ring-bell-function #'ignore))
-
 
 (provide 'warmacs-packages)
