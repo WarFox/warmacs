@@ -1,33 +1,37 @@
 ;; warmacs-ui.el -*- lexical-binding: t; -*-
 
-(use-package all-the-icons)
+;; UI and Theme configurations
+
+(defcustom warmacs-theme 'doom-one
+  "The default theme to use.")
+
+;; Replaced all-the-icons with nerd-icons
+(use-package nerd-icons)
+
+(use-package nerd-icons-dired
+  :hook
+  (dired-mode . nerd-icons-dired-mode))
 
 (use-package doom-themes
-  :ensure t
-  :config
+  :custom
   ;; Global settings (defaults)
-  (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
-        doom-themes-enable-italic t) ; if nil, italics is universally disabled
-  (load-theme 'doom-one t)
-
+  (doom-themes-enable-bold t)   ; if nil, bold is universally disabled
+  (doom-themes-enable-italic t) ; if nil, italics is universally disabled
+  :config
+  (load-theme warmacs-theme t)
   ;; Enable flashing mode-line on errors
   (doom-themes-visual-bell-config)
-  ;; Enable custom neotree theme (all-the-icons must be installed!)
-  (doom-themes-neotree-config)
-  ;; or for treemacs users
-  (setq doom-themes-treemacs-theme "doom-atom") ; use "doom-colors" for less minimal icon theme
-  (doom-themes-treemacs-config)
   ;; Corrects (and improves) org-mode's native fontification.
   (doom-themes-org-config))
 
 (use-package doom-modeline
   :custom
   (doom-modeline-height 15)
-  :hook (elpaca-after-init . doom-modeline-mode)
+  :hook
+  (elpaca-after-init . doom-modeline-mode)
   :init
   (column-number-mode 1)
   (size-indication-mode 1))
-
 
 (use-package centaur-tabs
   :custom

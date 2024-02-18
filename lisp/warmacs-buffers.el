@@ -17,6 +17,7 @@
   "b" #'consult-buffer
   "d" #'kill-current-buffer
   "e" #'erase-buffer
+  "h" #'dashboard-open
   "m" #'((lambda () (interactive) (warmacs/switch-to-buffer "*Messages*")) :which-key "*Messages*")
   "n" #'next-buffer
   "o" #'((lambda () (interactive) (warmacs/switch-to-buffer nil)) :which-key "other-buffer")

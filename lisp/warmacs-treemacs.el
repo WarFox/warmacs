@@ -1,7 +1,6 @@
 ;; warmacs-treemacs.el -*- lexical-binding: t; -*-
 
 (use-package treemacs
-  :ensure t
   :defer t
   :init
   (with-eval-after-load 'winum
@@ -115,5 +114,8 @@
   :ensure t
   :config (treemacs-set-scope-type 'Tabs))
 
-(provide 'warmacs-treemacs)
+(use-package treemacs-nerd-icons
+  :config
+  (treemacs-load-theme "nerd-icons"))
 
+(provide 'warmacs-treemacs)
