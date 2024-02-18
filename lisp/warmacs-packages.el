@@ -55,11 +55,13 @@
 ;; Necessary to use the Elpaca's `:ensure` support after this point
 (elpaca-wait)
 
+;;
+;; Evil mode
 (use-package evil
   :demand t
-  :init
-  (setq evil-want-integration t) ;; This is optional since it's already set to t by default.
-  (setq evil-want-keybinding nil)
+  :custom
+  (evil-want-integration t) ;; This is optional since it's already set to t by default.
+  (evil-want-keybinding nil) ;; set to nil to use evil-collection
   :config
   (evil-mode 1))
 
@@ -67,6 +69,11 @@
   :after evil
   :config
   (evil-collection-init))
+
+(use-package evil-surround
+  :after evil
+  :config
+  (global-evil-surround-mode 1))
 
 ;; Unload and install seq, we need seq version higher than the one bundled with emacs
 
