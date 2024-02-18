@@ -80,7 +80,10 @@
     "F" #'toggle-frame-fullscreen)
 
   (warmacs/leader-menu "Kill Ring" "r"
-    "y" #'consult-yank-from-kill-ring))
+    "y" #'yank-pop)
+
+
+  (warmacs/leader-menu "Search" "s"))
 
 ;; Ensure general.el is configured
 (elpaca-wait)
