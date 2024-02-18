@@ -4,32 +4,33 @@
 ;; Projects Support
 
 (use-package projectile
-  :init
-  (setq projectile-switch-project-action #'project-find-file))
+  :custom
+  (projectile-switch-project-action #'project-find-file)
+  :general
+  (warmacs/leader-menu "Projects" "p"
+    "!" #'projectile-run-shell-command-in-root
+    "&" #'projectile-run-async-shell-command-in-root
+    "%" #'projectile-replace-regexp
+    "a" #'projectile-toggle-between-implementation-and-test
+    "b" #'project-buffer
+    "c" #'projectile-compile-project
+    "d" #'projectile-find-dir
+    "D" #'projectile-dired
+    "e" #'projectile-edit-dir-locals
+    "f" #'projectile-find-file
+    "F" #'projectile-find-file-dwim
+    "g" #'projectile-find-tag
+    "G" #'projectile-regenerate-tags
+    "I" #'projectile-invalidate-cache
+    "k" #'projectile-kill-buffers
+    "l" #'projectile-switch-open-project
+    "p" #'projectile-switch-project
+    "r" #'projectile-recentf
+    "R" #'projectile-replace
+    "S" #'projectile-save-project-buffers
+    "t" #'treemacs
+    "T" #'projectile-test-project
+    "v" #'projectile-vc))
 
-(warmacs/leader-menu "Projects" "p"
-  "!" #'projectile-run-shell-command-in-root
-  "&" #'projectile-run-async-shell-command-in-root
-  "%" #'projectile-replace-regexp
-  "a" #'projectile-toggle-between-implementation-and-test
-  "b" #'consult-project-buffer
-  "c" #'projectile-compile-project
-  "d" #'projectile-find-dir
-  "D" #'projectile-dired
-  "e" #'projectile-edit-dir-locals
-  "f" #'projectile-find-file
-  "F" #'projectile-find-file-dwim
-  "g" #'projectile-find-tag
-  "G" #'projectile-regenerate-tags
-  "I" #'projectile-invalidate-cache
-  "k" #'projectile-kill-buffers
-  "l" #'projectile-switch-open-project
-  "p" #'projectile-switch-project
-  "r" #'projectile-recentf
-  "R" #'projectile-replace
-  "S" #'projectile-save-project-buffers
-  "t" #'treemacs
-  "T" #'projectile-test-project
-  "v" #'projectile-vc)
 
 (provide 'warmacs-projects)
