@@ -70,11 +70,6 @@
   :config
   (evil-collection-init))
 
-(use-package evil-surround
-  :after evil
-  :config
-  (global-evil-surround-mode 1))
-
 ;; Unload and install seq, we need seq version higher than the one bundled with emacs
 
 ;; Elpaca checks for version requirement

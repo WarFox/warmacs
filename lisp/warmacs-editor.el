@@ -24,4 +24,23 @@
   :hook
   ((prog-mode text-mode conf-mode) . #'display-line-numbers-mode))
 
+(use-package evil-mc
+  :after evil
+  :hook
+  ((prog-mode org-mode markdown-mode) . evil-mc-mode))
+
+(use-package evil-surround
+  :after evil
+  :hook
+  ((prog-mode org-mode markdown-mode) . evil-surround-mode))
+
+(use-package evil-nerd-commenter
+  :after evil
+  :commands
+  (evilnc-comment-operator evilnc-copy-and-comment-operator)
+  :general
+  (:keymaps 'evil-normal-state-map
+            "gc" #'evilnc-comment-operator
+            "gC" #'evilnc-copy-and-comment-operator))
+
 (provide 'warmacs-editor)
