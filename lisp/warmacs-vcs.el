@@ -4,6 +4,9 @@
 
 ;; Git
 
-(use-package magit)
+(use-package magit
+  :general
+  (warmacs/leader-menu "git" "g"
+    "s" #'magit-status))
 
 (provide 'warmacs-vcs)

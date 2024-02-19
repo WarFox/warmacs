@@ -46,19 +46,37 @@
     :non-normal-prefix (concat "C-SPC " warmacs-local-leader-key)
     "" '(:ignore t :which-key (lambda (arg) `(,(cadr (split-string (car arg) " ")) . ,(replace-regexp-in-string "-mode$" "" (symbol-name major-mode))))))
 
+  ;; Macro for creating a leader menu
   (defmacro warmacs/leader-menu (name infix-key &rest body)
-    "Create a definer named warmacs/leader-NAME-menu wrapping warmacs/leader-keys.
-     Create prefix map: warmacs-leader-NAME-menu-map. Prefix bindings in BODY with INFIX-KEY."
+    "Create a definer named warmacs/leader-menu-NAME wrapping warmacs/leader-keys.
+     Create prefix command: warmacs-leader-menu-NAME-command. Prefix bindings in BODY with INFIX-KEY."
     (declare (indent 2))
     `(progn
        (general-create-definer ,(intern (format "warmacs/leader-menu-%s" name))
 	 :wrapping warmacs/leader-keys
-	 :prefix-command (quote ,(intern (format "leader-menu-%s-command" name)))
+	 :prefix-command (quote ,(intern (format "warmacs/leader-menu-%s-command" name)))
 	 :infix ,infix-key
 	 :wk-full-keys nil
 	 "" '(:ignore t :which-key ,name))
-       (,(intern (concat "warmacs/leader-menu-" name))
+       (,(intern (format "warmacs/leader-menu-%s" name))
 	,@body)))
+
+  ;; Macro for creating a local leader menu
+  (defmacro warmacs/local-leader-menu (mode &rest body)
+    "Create a definer named warmacs/local-leader-menu-MODE wrapping warmacs/local-leader-keys
+     Create prefix map: MODE-mode-map
+     Parameter mode must be a symbol not end with -mode"
+    (declare (indent 2))
+    (let ((local-leader-menu-name (concat "warmacs/local-leader-menu-" (symbol-name mode)))
+	  (local-keymap (concat (symbol-name mode) "-mode-map")))
+      `(progn
+	 (general-create-definer ,(intern local-leader-menu-name)
+	   :wrapping warmacs/local-leader-keys
+	   :keymaps (quote ,(intern local-keymap))
+	   :wk-full-keys nil
+	   "" '(:ignore t :which-key ,mode))
+	 (,(intern local-leader-menu-name)
+	  ,@body))))
 
   :config
   ;; basic menu setup
@@ -68,20 +86,16 @@
     "/" #'projectile-ripgrep
     "SPC" '(execute-extended-command :which-key "M-x"))
 
-  (warmacs/leader-menu "applications" "a"
+  (warmacs/leader-menu "Applications" "a"
     "p" #'list-processes
     "P" #'proced)
 
-  (warmacs/leader-menu "git" "g"
-    "s" #'magit-status)
-
-  (warmacs/leader-menu "toggle" "T"
+  (warmacs/leader-menu "Toggle" "T"
     "f" #'toggle-frame-maximized
     "F" #'toggle-frame-fullscreen)
 
   (warmacs/leader-menu "Kill Ring" "r"
     "y" #'yank-pop)
-
 
   (warmacs/leader-menu "Search" "s"))
 
