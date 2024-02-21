@@ -12,7 +12,7 @@
     "&" #'projectile-run-async-shell-command-in-root
     "%" #'projectile-replace-regexp
     "a" #'projectile-toggle-between-implementation-and-test
-    "b" #'project-buffer
+    "b" #'projectile-switch-to-buffer
     "c" #'projectile-compile-project
     "d" #'projectile-find-dir
     "D" #'projectile-dired

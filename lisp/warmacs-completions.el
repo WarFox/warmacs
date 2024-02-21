@@ -196,6 +196,7 @@
   ([remap switch-to-buffer-other-window] #'consult-buffer-other-window)
   ([remap switch-to-buffer-other-frame]  #'consult-buffer-other-frame)
   ([remap projectile-switch-to-buffer]   #'consult-project-buffer)
+  ([remap projectile-switch-project]     #'consult-projectile-switch-project)
   ([remap projectile-find-file]          #'consult-projectile-find-file)
   ([remap yank-pop]                      #'consult-yank-pop)
   ([remap vc-git-grep]                   #'consult-git-grep)
