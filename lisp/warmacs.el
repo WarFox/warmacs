@@ -1,5 +1,17 @@
 ;; warmacs.el -*- lexical-binding: t; -*-
 
+;; Warmacs is a modular, portable, and modern Emacs configuration
+;; This file is not part of GNU Emacs.
+
+;; Author: Deepu Mohan Puthrote <git@deepumohan.com>
+
+;; This program is free software; you can redistribute it and/or
+;; modify it under the terms of the GNU General Public License as
+;; published by the Free Software Foundation; either version 3, or (at
+;; your option) any later version.
+
+;; Core of Warmacs
+
 ;;; Load Warmacs's stdlib
 (add-to-list 'load-path (file-name-directory load-file-name))
 (require 'warmacs-lib)
@@ -86,7 +98,6 @@
         (advice-remove #'tool-bar-setup #'ignore)
         (add-transient-hook! 'tool-bar-mode (tool-bar-setup))))))
 
-
 ;;
 ;;; Custom hooks
 
@@ -103,14 +114,23 @@
 ;;
 ;;; Directory variables
 
-(defvar warmacs-emacs-dir user-emacs-directory
+(defconst warmacs-emacs-dir user-emacs-directory
   "The path to the currently loaded .emacs.d directory. Must end with a slash.")
 
 (defconst warmacs-core-dir (file-name-directory load-file-name)
   "The root directory of Warmacs's core files. Must end with a slash.")
 
-(defvar warmacs-layers-dir (expand-file-name "layers/" warmacs-emacs-dir)
-  "The root directory for Warmacs's modules. Must end with a slash.")
+(defconst warmacs-layers-dir (expand-file-name "layers/" warmacs-emacs-dir)
+  "The root directory for Warmacs's layers. Must end with a slash.")
+
+(add-to-list 'load-path warmacs-layers-dir)
+(add-to-list 'load-path warmacs-core-dir)
+
+;;
+;;;; Global Vars
+
+(defvar warmacs-active-layers nil
+  "A list of enabled layers.")
 
 ;; Local Variables:
 ;; no-byte-compile: t
