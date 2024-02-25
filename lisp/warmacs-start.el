@@ -24,21 +24,25 @@
   :group 'warmacs)
 
 
-;;
 ;;; Reasonable defaults for interactive sessions
 
 ;;; Runtime optimizations
-(setq auto-mode-case-fold nil)
+(setq-default
+ ;; don't do case-insensitive search in auto-mode-alist
+ auto-mode-case-fold nil
 
-(setq-default bidi-display-reordering 'left-to-right
-              bidi-paragraph-direction 'left-to-right)
+ bidi-display-reordering 'left-to-right
+ bidi-paragraph-direction 'left-to-right
 
-(setq bidi-inhibit-bpa t)  ; Emacs 27+ only
+ bidi-inhibit-bpa t  ; Emacs 27+ only
 
-(setq-default cursor-in-non-selected-windows nil)
-(setq highlight-nonselected-windows nil)
+ cursor-in-non-selected-windows nil
 
-(setq fast-but-imprecise-scrolling t)
+ highlight-nonselected-windows nil)
+
+(setq-default
+ fast-but-imprecise-scrolling t
+ pixel-scroll-precision-mode t)
 
 (setq ffap-machine-p-known 'reject)
 
@@ -49,7 +53,8 @@
 (if (boundp 'pgtk-wait-for-event-timeout)
   (setq pgtk-wait-for-event-timeout 0.001))
 
-(setq read-process-output-max (* 64 1024))  ; 64kb
+;; (setq read-process-output-max (* 64 1024))  ; 64kb
+(setq read-process-output-max (* 1024 1024)) ;; 1mb
 
 (setq redisplay-skip-fontification-on-input t)
 
@@ -62,7 +67,6 @@
       gcmh-auto-idle-delay-factor 10
       gcmh-high-cons-threshold (* 16 1024 1024))  ; 16mb
 (add-hook 'warmacs-first-buffer-hook #'gcmh-mode)
-
 
 ;;; Disable UI elements early
 (push '(menu-bar-lines . 0)   default-frame-alist)
@@ -105,6 +109,9 @@
 ;; a step too opinionated.
 (setq default-input-method nil)
 
+;; Before init hooks
+(run-hooks 'warmacs-before-init-hook)
+
 ;;
 ;; Start Warmacs
 (require 'warmacs-packages)
@@ -124,6 +131,26 @@
 (require 'warmacs-restart)
 (require 'warmacs-ai)
 (require 'warmacs-help)
+
+;; Run Hooks
+
+;; run warmacs-first-input-hook upon first input
+(add-hook 'pre-command-hook
+	  (defun warmacs-run-first-input-hook-h ()
+	    (remove-hook 'pre-command-hook #'warmacs-run-first-input-hook-h)
+	    (run-hooks 'warmacs-first-input-hook)))
+;;
+;; ;; run warmacs-first-file-hook upon first file
+(add-hook 'find-file-hook
+	  (defun warmacs-run-first-file-hook-h ()
+	    (remove-hook 'find-file-hook #'warmacs-run-first-file-hook-h)
+	    (run-hooks 'warmacs-first-file-hook)))
+;;
+;; ;; run warmacs-first-buffer-hook upon first buffer
+(add-hook 'buffer-list-update-hook
+	  (defun warmacs-run-first-buffer-hook-h ()
+	    (remove-hook 'buffer-list-update-hook #'warmacs-run-first-buffer-hook-h)
+	    (run-hooks 'warmacs-first-buffer-hook)))
 
 ;; Local Variables:
 ;; no-byte-compile: t

@@ -55,6 +55,9 @@
 ;; Necessary to use the Elpaca's `:ensure` support after this point
 (elpaca-wait)
 
+;; Ensure gcmh-mode. This is activated by warmacs-first-buffer-hook
+(use-package gcmh)
+
 ;;
 ;; Evil mode
 (use-package evil
