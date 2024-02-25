@@ -73,6 +73,9 @@
   :config
   (evil-collection-init))
 
+(use-package evil-lisp-state
+  :after evil)
+
 ;; Unload and install seq, we need seq version higher than the one bundled with emacs
 
 ;; Elpaca checks for version requirement
