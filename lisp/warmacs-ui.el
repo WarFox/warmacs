@@ -12,6 +12,12 @@
   :hook
   (dired-mode . nerd-icons-dired-mode))
 
+(use-package nerd-icons-completion
+  :config
+  (nerd-icons-completion-mode)
+  :hook
+  ('marginalia-mode . #'nerd-icons-completion-marginalia-setup))
+
 (use-package doom-themes
   :custom
   ;; Global settings (defaults)
