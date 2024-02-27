@@ -24,6 +24,9 @@
 (defconst warmacs-layers-dir (expand-file-name "layers/" warmacs-emacs-dir)
   "The root directory for Warmacs's layers. Must end with a slash.")
 
+(defconst warmacs-cache-dir (expand-file-name ".cache/" warmacs-emacs-dir)
+  "The root directory for Warmacs's cache. Must end with a slash.")
+
 (defconst warmacs-user-dir
   (expand-file-name
    (if-let (warmacsdir (getenv "WARMACSDIR"))
