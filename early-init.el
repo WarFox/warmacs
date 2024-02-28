@@ -11,12 +11,12 @@
 
  ;; Load byte-compiled source files. Saves us a little IO time to skip
  ;; all the mtime checks on each lookup.
- load-prefer-newer noninteractive
+ load-prefer-newer t
 
- ;; Prevent unwanted runtime compilation for gccemacs (native-comp)
- ;; users; packages are compiled ahead-of-time when they are installed
- ;; and site files are compiled when gccemacs is installed.
- native-comp-deferred-compilation nil
+ ;; If non-nil, compile loaded .elc files asynchronously.
+ ;; After compilation, each function definition is updated to use the
+ ;; natively-compiled one.
+ native-comp-jit-compilation t
 
  ;; In Emacs 27+, package initialization occurs before `user-init-file' is
  ;; loaded, but after `early-init-file'. Package initialization is handled by
