@@ -55,6 +55,13 @@
 ;; Necessary to use the Elpaca's `:ensure` support after this point
 (elpaca-wait)
 
+;; setup emacs-async and async-byte-compilation
+(use-package async
+  :config
+  (require 'async-bytecomp)
+  (dired-async-mode 1)
+  (async-bytecomp-package-mode 1))
+
 ;; Ensure gcmh-mode. This is activated by warmacs-first-buffer-hook
 (use-package gcmh)
 
