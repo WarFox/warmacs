@@ -31,7 +31,11 @@
 (use-package evil-mc
   :after evil
   :hook
-  ((prog-mode org-mode markdown-mode) . evil-mc-mode))
+  ((prog-mode org-mode markdown-mode) . evil-mc-mode)
+  :general
+  (:keymaps
+   'evil-normal-state-map
+   "C-n" #'evil-mc-make-cursor-move-next-line))
 
 (use-package evil-surround
   :after evil
