@@ -5,7 +5,7 @@
 
 (use-package projectile
   :custom
-  (projectile-switch-project-action #'project-find-file)
+  (projectile-switch-project-action #'consult-projectile-find-file)
   :general
   (warmacs/leader-menu "Projects" "p"
     "!" #'projectile-run-shell-command-in-root
