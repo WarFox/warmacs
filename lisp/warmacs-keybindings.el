@@ -8,8 +8,8 @@
 ; Use the right alt/option key for stock Apple stuff
 ; e.g Use the right alt/option-option key on Mac for inputing special characters like #
 (with-system darwin
-  (setq ns-alternate-modifier 'meta)
-  (setq ns-right-alternate-modifier 'none))
+  (setq-default ns-alternate-modifier 'meta
+                ns-right-alternate-modifier 'none))
 
 ;; setup keybindings
 (use-package which-key
@@ -101,5 +101,17 @@
 
 ;; Ensure general.el is configured
 (elpaca-wait)
+
+(use-package emacs
+  :ensure nil
+  :general
+  ;; Make <escape> quit as much as possible
+  (general-def
+    :keymaps '(minibuffer-local-map
+               minibuffer-local-ns-map
+               minibuffer-local-completion-map
+               minibuffer-local-must-match-map
+               minibuffer-local-isearch-map)
+    "<escape>" #'keyboard-escape-quit))
 
 (provide 'warmacs-keybindings)
