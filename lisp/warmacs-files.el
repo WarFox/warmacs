@@ -53,4 +53,15 @@ renamed."
     "r" #'(recentf :wk "Recent files")
     "R" #'(warmacs/rename-current-buffer-file :wk "Rename file")))
 
+(use-package recentf
+  :ensure nil
+  :custom
+  (recentf-auto-cleanup 'never)
+  (recentf-max-menu-items 15)
+  (recentf-max-saved-items 100)
+  (recentf-save-file (expand-file-name "recentf" warmacs-cache-dir))
+  :config
+  (add-to-list 'recentf-exclude (expand-file-name "*" warmacs-cache-dir))
+  (recentf-mode 1))
+
 (provide 'warmacs-files)
