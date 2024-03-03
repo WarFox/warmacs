@@ -11,6 +11,10 @@
   :custom
   ;; Use space instead of tabs in all buffers
   (indent-tabs-mode nil)
+  ;; Disable creating backup files
+  (make-backup-files nil)
+  ;; Enable auto-saving
+  (auto-save-default t)
   ;; Line numbers
   ;; Explicitly define a width to reduce the cost of on-the-fly computation
   (display-line-numbers-width 3)
