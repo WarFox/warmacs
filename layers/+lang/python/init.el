@@ -11,10 +11,6 @@
   (python-shell-completion-native-enable nil)
   (python-shell-prompt-output-regexp "Out\\[[0-9]+\\]: ")
   (python-shell-prompt-input-regexp "In \\[[0-9]+\\]: ")
-  :init
-  (when (treesit-available-p)
-    (setq major-mode-remap-alist
-          '((python-mode . python-ts-mode))))
   :general
   (warmacs/local-leader-menu python
       :keymaps '(python-mode-map python-ts-mode-map)

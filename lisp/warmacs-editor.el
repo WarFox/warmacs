@@ -30,7 +30,16 @@
   ;; Enable line numbers in most text-editing modes. We avoid
   ;; `global-display-line-numbers-mode' because there are many special and
   ;; temporary modes where we don't need/want them.
-  ((prog-mode text-mode conf-mode) . #'display-line-numbers-mode))
+  ((prog-mode text-mode conf-mode) . #'display-line-numbers-mode)
+  :config
+  ;; Enable auto-saving
+  (auto-save-visited-mode t)
+  ;; Manage major-mode-remap-alist if treesit is available
+  (when (treesit-available-p)
+    (setq major-mode-remap-alist
+          '((python-mode . python-ts-mode)
+            (rust-mode . rust-ts-mode)
+            (yaml-mode . yaml-ts-mode)))))
 
 (use-package evil-mc
   :after evil
