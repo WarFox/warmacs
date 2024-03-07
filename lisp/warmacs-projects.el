@@ -5,8 +5,8 @@
 
 (use-package projectile
   :custom
-  (projectile-switch-project-action #'consult-projectile-find-file)
-  (projectile-sort-order #'recentf)
+  (projectile-switch-project-action #'consult-projectile-recentf)
+  (projectile-sort-order #'recently-active)
   :init
   (setq-default
    projectile-cache-file (expand-file-name "projectile.cache"
