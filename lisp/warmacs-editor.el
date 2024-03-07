@@ -33,7 +33,7 @@
   ((prog-mode text-mode conf-mode) . #'display-line-numbers-mode)
   :config
   ;; Enable auto-saving
-  (auto-save-visited-mode t)
+  (auto-save-visited-mode 1)
   ;; Manage major-mode-remap-alist if treesit is available
   (when (treesit-available-p)
     (setq major-mode-remap-alist

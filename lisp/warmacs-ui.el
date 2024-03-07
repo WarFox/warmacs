@@ -60,7 +60,7 @@
 
   (centaur-tabs-headline-match)
   (centaur-tabs-group-by-projectile-project)
-  (centaur-tabs-mode t)
+  (centaur-tabs-mode 1)
   :general
   ("C-c t" '(:ignore t :which-key "tabs"))
   ("C-c t s"  'centaur-tabs-switch-group)

@@ -32,7 +32,6 @@
   (treemacs-no-png-images                   nil)
   (treemacs-persist-file                    (expand-file-name "treemacs-persist" warmacs-cache-dir))
   (treemacs-position                        'left)
-  (treemacs-project-follow-mode             t)
   (treemacs-project-follow-cleanup          t)
   (treemacs-project-follow-into-home        nil)
   (treemacs-read-string-input               'from-child-frame)
@@ -62,11 +61,10 @@
   ;; The default width and height of the icons is 22 pixels. If you are
   ;; using a Hi-DPI display, uncomment this to double the icon size.
   ;;(treemacs-resize-icons 44)
-  (treemacs-follow-mode t)
-  (treemacs-project-follow-mode t)
-  (treemacs-filewatch-mode t)
+  (treemacs-follow-mode 1)
+  (treemacs-project-follow-mode 1)
   (treemacs-fringe-indicator-mode 'always)
-  (treemacs-git-commit-diff-mode t)
+  (treemacs-git-commit-diff-mode 1)
 
   (pcase (cons (not (null (executable-find "git")))
                (not (null treemacs-python-executable)))
