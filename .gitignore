@@ -54,3 +54,4 @@ flycheck_*.el
 /transient/
 recentf
 projects
+tree-sitter/

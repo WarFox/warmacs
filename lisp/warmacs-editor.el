@@ -33,13 +33,7 @@
   ((prog-mode text-mode conf-mode) . #'display-line-numbers-mode)
   :config
   ;; Enable auto-saving
-  (auto-save-visited-mode 1)
-  ;; Manage major-mode-remap-alist if treesit is available
-  (when (treesit-available-p)
-    (setq major-mode-remap-alist
-          '((python-mode . python-ts-mode)
-            (rust-mode . rust-ts-mode)
-            (yaml-mode . yaml-ts-mode)))))
+  (auto-save-visited-mode 1))
 
 (use-package evil-mc
   :after evil

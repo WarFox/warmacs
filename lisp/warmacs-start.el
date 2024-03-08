@@ -131,6 +131,7 @@
 (require 'warmacs-restart)
 (require 'warmacs-ai)
 (require 'warmacs-help)
+(require 'warmacs-tree-sitter)
 
 ;; Run Hooks
 
