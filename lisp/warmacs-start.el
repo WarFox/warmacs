@@ -132,6 +132,7 @@
 (require 'warmacs-ai)
 (require 'warmacs-help)
 (require 'warmacs-tree-sitter)
+(require 'default-layers)
 
 ;; Run Hooks
 
