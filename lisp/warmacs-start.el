@@ -1,8 +1,12 @@
-;; warmacs-start.el -*- lexical-binding: t; -*-
+;;; warmacs-start.el -- Start warmacs -*- lexical-binding: t; -*-
 
-;; Start warmacs
+;;; Commentary:
 
-;;
+;; Set up hooks and reasonable defaults for starting interactive sessions.
+;; Load core packages and default layers.
+
+;;; Code:
+
 ;;; Custom hooks
 
 (defcustom warmacs-first-input-hook ()
@@ -132,6 +136,7 @@
 (require 'warmacs-ai)
 (require 'warmacs-help)
 (require 'warmacs-tree-sitter)
+(require 'warmacs-flycheck)
 (require 'default-layers)
 
 ;; Run Hooks
@@ -161,3 +166,4 @@
 ;; End:
 
 (provide 'warmacs-start)
+;;; warmacs-start.el ends here
