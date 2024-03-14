@@ -28,6 +28,7 @@
     "r" #'rename-buffer
     "s" #'scratch-buffer
     "S" #'(warmacs/scratch-buffer-other-window :which-key "scratch-other-window")
+    "w" #'((lambda () (interactive) (warmacs/switch-to-buffer "*Warnings*")) :which-key "*Warnings*")
     "y" #'((lambda () (interactive) (clipboard-kill-ring-save (point-min) (point-max))) :which-key "copy-buffer")))
 
 (provide 'warmacs-buffers)

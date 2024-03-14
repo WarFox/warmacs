@@ -42,11 +42,14 @@
 
  cursor-in-non-selected-windows nil
 
- highlight-nonselected-windows nil)
+ highlight-nonselected-windows nil
 
-(setq-default
  fast-but-imprecise-scrolling t
- pixel-scroll-precision-mode t)
+ pixel-scroll-precision-mode t
+
+ ;; Suppress the *Warnings* buffer when native compilation shows warnings.
+ ;; Async compilation will still log warnings to the *Warnings* buffer.
+ native-comp-async-report-warnings-errors 'silent)
 
 (setq ffap-machine-p-known 'reject)
 
