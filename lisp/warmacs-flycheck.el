@@ -1,4 +1,4 @@
-;;; warmacs-flycheck.el --- Summary -*- lexical-binding: t; -*-
+;;; warmacs-flycheck.el --- Warmacs Flycheck -*- lexical-binding: t; -*-
 
 ;;; Commentary:
 
@@ -25,11 +25,14 @@ If the error list is visible, hide it.  Otherwise, show it."
       (switch-to-buffer-other-window flycheck-error-list-buffer)))
 
   :hook (prog-mode . flycheck-mode)
+  :custom
+  (flycheck-emacs-lisp-load-path 'inherit)
   :general
   (warmacs/leader-menu "Errors" "e"
     "b" #'flycheck-buffer
     "c" #'flycheck-clear
     "d" #'flycheck-disable-checker
+    "e" #'consult-flycheck
     "h" #'flycheck-describe-checker
     "l" #'warmacs/toggle-flycheck-error-list
     "L" #'warmacs/goto-flycheck-error-list
