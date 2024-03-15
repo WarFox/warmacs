@@ -44,7 +44,7 @@
     :states '(emacs normal hybrid motion visual operator)
     :prefix warmacs-local-leader-key
     :non-normal-prefix (concat "C-SPC " warmacs-local-leader-key)
-    "" '(:ignore t :which-key (lambda (arg) `(,(cadr (split-string (car arg) " ")) . ,(replace-regexp-in-string "-mode$" "" (symbol-name major-mode))))))
+    "" '(:ignore t :wk (lambda (arg) `(,(cadr (split-string (car arg) " ")) . ,(replace-regexp-in-string "-mode$" "" (symbol-name major-mode))))))
 
   ;; Macro for creating a leader menu
   (defmacro warmacs/leader-menu (name infix-key &rest body)
@@ -57,7 +57,7 @@
 	 :prefix-command (quote ,(intern (format "warmacs/leader-menu-%s-command" name)))
 	 :infix ,infix-key
 	 :wk-full-keys nil
-	 "" '(:ignore t :which-key ,name))
+	 "" '(:ignore t :wk ,name))
        (,(intern (format "warmacs/leader-menu-%s" name))
 	,@body)))
 
@@ -74,7 +74,7 @@
 	   :wrapping warmacs/local-leader-keys
 	   :keymaps (quote ,(intern local-keymap))
 	   :wk-full-keys nil
-	   "" '(:ignore t :which-key ,mode))
+	   "" '(:ignore t :wk ,mode))
 	 (,(intern local-leader-menu-name)
 	  ,@body))))
 
@@ -84,7 +84,7 @@
     "!" #'shell-command
     ":" #'eval-expression
     "/" #'projectile-ripgrep
-    "SPC" '(execute-extended-command :which-key "M-x"))
+    "SPC" '(execute-extended-command :wk "M-x"))
 
   (warmacs/leader-menu "Applications" "a"
     "p" #'list-processes

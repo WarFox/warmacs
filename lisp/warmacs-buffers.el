@@ -21,14 +21,14 @@
     "d" #'kill-current-buffer
     "e" #'erase-buffer
     "h" #'dashboard-open
-    "m" #'((lambda () (interactive) (warmacs/switch-to-buffer "*Messages*")) :which-key "*Messages*")
+    "m" #'((lambda () (interactive) (warmacs/switch-to-buffer "*Messages*")) :wk "*Messages*")
     "n" #'next-buffer
-    "o" #'((lambda () (interactive) (warmacs/switch-to-buffer nil)) :which-key "other-buffer")
+    "o" #'((lambda () (interactive) (warmacs/switch-to-buffer nil)) :wk "other-buffer")
     "p" #'previous-buffer
     "r" #'rename-buffer
     "s" #'scratch-buffer
-    "S" #'(warmacs/scratch-buffer-other-window :which-key "scratch-other-window")
-    "w" #'((lambda () (interactive) (warmacs/switch-to-buffer "*Warnings*")) :which-key "*Warnings*")
-    "y" #'((lambda () (interactive) (clipboard-kill-ring-save (point-min) (point-max))) :which-key "copy-buffer")))
+    "S" #'(warmacs/scratch-buffer-other-window :wk "scratch-other-window")
+    "w" #'((lambda () (interactive) (warmacs/switch-to-buffer "*Warnings*")) :wk "*Warnings*")
+    "y" #'((lambda () (interactive) (clipboard-kill-ring-save (point-min) (point-max))) :wk "copy-buffer")))
 
 (provide 'warmacs-buffers)

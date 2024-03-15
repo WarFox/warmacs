@@ -3,7 +3,7 @@
 (use-package docker
   :general
   (warmacs/leader-menu-Applications
-    "d" '(:ignore t :which-key "Docker")
+    "d" '(:ignore t :wk "Docker")
     "dd" #'docker)
   (general-nmap :keymaps 'docker-image-mode-map "q" 'quit-window)
   (general-nmap :keymaps 'docker-container-mode-map "q" 'quit-window)
@@ -14,10 +14,10 @@
 (use-package dockerfile-mode
   :general
   (warmacs/local-leader-menu dockerfile
-      "b" '(:ignore t :which-key "Build")
+      "b" '(:ignore t :wk "Build")
       "bb" #'dockerfile-build-buffer
       "bB" #'dockerfile-build-no-cache-buffer
-      "d" '(:ignore t :which-key "Docker")
+      "d" '(:ignore t :wk "Docker")
       "dd" #'docker
       "di" #'docker-images
       "dp" #'docker-containers))

@@ -3,35 +3,34 @@
 ;; Quit/Restart menu
 
 (use-package restart-emacs
-  :init
-  (progn
-    (defun warmacs/restart-emacs (&optional args)
+  :preface
+  (defun warmacs/restart-emacs (&optional args)
     (interactive)
     (restart-emacs))
 
-    (defun warmacs/kill-emacs (prompt &optional args)
+  (defun warmacs/kill-emacs (prompt &optional args)
     (interactive)
     (if (not prompt)
         (save-some-buffers nil t))
-    (kill-emacs args)))
+    (kill-emacs args))
   :config
   (warmacs/leader-menu "quit" "q"
     "d" #'((lambda (&optional args)
-            (interactive)
-            (warmacs/restart-emacs (cons "--debug-init" args)))
-           :which-key "restart-emacs-debug-init")
+             (interactive)
+             (warmacs/restart-emacs (cons "--debug-init" args)))
+           :wk "restart-emacs-debug-init")
     "R" #'warmacs/restart-emacs
     "t" #'((lambda (&optional args)
              (interactive)
              (warmacs/restart-emacs (cons "--timed-requires" args)))
-            :which-key "restart-emacs-timed-requires")
+           :wk "restart-emacs-timed-requires")
     "T" #'((lambda (&optional args)
 	     (interactive)
-            (warmacs/restart-emacs (cons "--adv-timers" args)))
-           :which-key "restart-emacs-adv-timers")
+             (warmacs/restart-emacs (cons "--adv-timers" args)))
+           :wk "restart-emacs-adv-timers")
     "q" #'((lambda (&optional args)
 	     (interactive)
-            (warmacs/kill-emacs t args))
-           :which-key "prompt-kill-emacs")))
+             (warmacs/kill-emacs t args))
+           :wk "prompt-kill-emacs")))
 
 (provide 'warmacs-restart)

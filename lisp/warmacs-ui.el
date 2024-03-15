@@ -62,7 +62,7 @@
   (centaur-tabs-group-by-projectile-project)
   (centaur-tabs-mode 1)
   :general
-  ("C-c t" '(:ignore t :which-key "tabs"))
+  ("C-c t" '(:ignore t :wk "tabs"))
   ("C-c t s"  'centaur-tabs-switch-group)
   ("C-c t p"  'centaur-tabs-group-by-projectile-project)
   ("C-c t g"  'centaur-tabs-group-buffer-groups)
