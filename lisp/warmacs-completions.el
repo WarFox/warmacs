@@ -27,7 +27,7 @@
   ;; This adds thin lines, sorting and hides the mode line of the window.
   (advice-add #'register-preview :override #'consult-register-window)
 
-  (advice-add #'multi-occur :override #'consult-multi-occur)
+  (advice-add #'multi-occur :override #'consult-line-multi)
 
   ;; Configure other variables and modes in the :config section,
   ;; after lazily loading the package.
@@ -258,7 +258,7 @@
 ;; Enable vertico
 (use-package vertico
   :init
-  (vertico-mode)
+  (vertico-mode 1)
 
   ;; Different scroll margin
   ;; (setq vertico-scroll-margin 0)
@@ -272,6 +272,11 @@
   ;; Optionally enable cycling for `vertico-next' and `vertico-previous'.
   ;; (setq vertico-cycle t)
   )
+
+(use-package vertico-posframe
+  :after vertico
+  :config
+  (vertico-posframe-mode 1))
 
 ;; Optionally use the `orderless' completion style.
 (use-package orderless
