@@ -21,6 +21,12 @@
       "vow" 'poetry-venv-workon
       "vot" 'poetry-venv-toggle))
 
+(use-package lsp-pyright
+  :hook
+  ((python-mode python-ts-mode) . (lambda ()
+                                    (require 'lsp-pyright)
+                                    (lsp-deferred))))  ; or lsp-deferred
+
 (use-package poetry
   :after python-mode)
 
