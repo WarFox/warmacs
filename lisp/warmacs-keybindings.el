@@ -83,7 +83,6 @@
   (warmacs/leader-keys
     "!" #'shell-command
     ":" #'eval-expression
-    "/" #'projectile-ripgrep
     "SPC" '(execute-extended-command :wk "M-x"))
 
   (warmacs/leader-menu "Applications" "a"

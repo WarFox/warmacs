@@ -41,6 +41,7 @@
   (warmacs/leader-menu "Projects" "p"
     "!" #'projectile-run-shell-command-in-root
     "&" #'projectile-run-async-shell-command-in-root
+    "/" #'projectile-ripgrep
     "%" #'projectile-replace-regexp
     "a" #'projectile-toggle-between-implementation-and-test
     "b" #'projectile-switch-to-buffer
