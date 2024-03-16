@@ -1,8 +1,15 @@
-;;; warmacs-windows.el -*- lexical-binding: t; -*-
+;;; warmacs-windows.el -- Warmacs Windows -*- lexical-binding: t; -*-
 
+;;; Commentary:
 ;; Window management
 
+;;; Code:
 (use-package ace-window)
+
+;; Prefer popup windows for buffers that cause mild annoyance
+(use-package popwin
+  :config
+  (popwin-mode 1))
 
 (use-package emacs
   :ensure nil
