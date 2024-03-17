@@ -4,6 +4,10 @@
   :init
   (with-eval-after-load 'winum
     (define-key winum-keymap (kbd "M-0") #'treemacs-select-window))
+  :hook
+  (treemacs-mode . (lambda ()
+                     (treemacs-follow-mode 1) ;; current file
+                     (treemacs-project-follow-mode 1))) ;; current project
   :custom
   (treemacs-collapse-dirs                   3)
   (treemacs-deferred-git-apply-delay        0.5)
@@ -61,8 +65,6 @@
   ;; The default width and height of the icons is 22 pixels. If you are
   ;; using a Hi-DPI display, uncomment this to double the icon size.
   ;;(treemacs-resize-icons 44)
-  (treemacs-follow-mode 1)
-  (treemacs-project-follow-mode 1)
   (treemacs-fringe-indicator-mode 'always)
   (treemacs-git-commit-diff-mode 1)
 
