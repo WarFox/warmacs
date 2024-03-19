@@ -1,6 +1,7 @@
 ;; +lang/javascript/init.el -*- lexical-binding: t; -*-
 
 (use-package javascript-mode
+  :ensure nil
   :hook
   ((javascript-mode javascript-ts-mode) . lsp-deferred))
 

@@ -3,6 +3,7 @@
 (use-package dashboard
   :custom
   (dashboard-banner-logo-title "Welcome to Warmacs!")
+  (dashboard-center-content t) ;; center the content
   ;; customise icons
   (dashboard-icon-type 'nerd-icons)    ;; use `nerd-icons' package
   (dashboard-display-icons-p t) ;; display icons on both GUI and terminal
