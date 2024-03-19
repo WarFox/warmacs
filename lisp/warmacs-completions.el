@@ -378,7 +378,6 @@
   (add-to-list 'completion-at-point-functions #'cape-elisp-symbol)
   (add-to-list 'completion-at-point-functions #'cape-line))
 
-
 (use-package nerd-icons-corfu
   :after corfu
   :config
@@ -411,5 +410,14 @@
   ;; Enable recursive minibuffers
   (setq enable-recursive-minibuffers t))
 
+;; Use wgrep to edit grep results
+;; Useful with embark-export
+(use-package wgrep
+  :after '(evil-collection)
+  :custom
+  (wgrep-auto-save-buffer t)
+  (wgrep-change-readonly-file t)
+  :config
+  (evil-collection-wgrep-setup))
 
 (provide 'warmacs-completions)
