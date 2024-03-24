@@ -31,11 +31,15 @@
   ;; Spacemacs-like menu
   ;; https://gist.github.com/progfolio/1c96a67fcec7584b31507ef664de36cc
   ;; https://www.reddit.com/r/emacs/comments/des3cl/comment/f2yw45k/?utm_source=share&utm_medium=web2x&context=3
-  (general-create-definer warmacs/leader-keys
-    :keymaps 'override
-    :states  '(normal motion visual operator)
+  (general-def
+    :states '(normal motion visual operator)
+    :prefix-map 'warmacs-leader-map
     :prefix  warmacs-leader-key
-    :non-normal-prefix (concat "C-" warmacs-leader-key)
+    :non-normal-prefix (concat "C-" warmacs-leader-key))
+
+  ;; Re-uses warmacs-leader-map
+  (general-create-definer warmacs/leader-keys
+    :keymaps 'warmacs-leader-map
     "" '(:ignore t :whick-key "leader key"))
 
   (general-create-definer warmacs/local-leader-keys
@@ -52,16 +56,15 @@
      Create prefix command: warmacs-leader-menu-NAME-command. Prefix bindings in BODY with INFIX-KEY."
     (declare (indent 2))
     `(progn
-       ;; Create new definer
+       ;; Create new definer for new leader menu
        (general-create-definer ,(intern (format "warmacs/leader-menu-%s" name))
-	 :wrapping warmacs/leader-keys
-	 :prefix-command (quote ,(intern (format "warmacs/leader-menu-%s-command" name)))
-	 :infix ,infix-key
-	 :wk-full-keys nil
-	 "" '(:ignore t :wk ,name))
+         :wrapping warmacs/leader-keys
+         :infix ,infix-key
+         :wk-full-keys nil
+         "" '(:ignore t :wk ,name))
        ;; Use new definer to create bindings
        (,(intern (format "warmacs/leader-menu-%s" name))
-	,@body)))
+        ,@body)))
 
   ;; Macro for creating a local leader menu
   (defmacro warmacs/local-leader-menu (mode &rest body)
