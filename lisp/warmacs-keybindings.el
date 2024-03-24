@@ -38,7 +38,7 @@
     :non-normal-prefix (concat "C-" warmacs-leader-key))
 
   ;; Re-uses warmacs-leader-map
-  (general-create-definer warmacs/leader-keys
+  (general-create-definer warmacs/set-leader-keys
     :keymaps 'warmacs-leader-map
     "" '(:ignore t :whick-key "leader key"))
 
@@ -52,13 +52,13 @@
 
   ;; Macro for creating a leader menu
   (defmacro warmacs/leader-menu (name infix-key &rest body)
-    "Create a definer named warmacs/leader-menu-NAME wrapping warmacs/leader-keys.
+    "Create a definer named warmacs/leader-menu-NAME wrapping warmacs/set-leader-keys.
      Create prefix command: warmacs-leader-menu-NAME-command. Prefix bindings in BODY with INFIX-KEY."
     (declare (indent 2))
     `(progn
        ;; Create new definer for new leader menu
        (general-create-definer ,(intern (format "warmacs/leader-menu-%s" name))
-         :wrapping warmacs/leader-keys
+         :wrapping warmacs/set-leader-keys
          :infix ,infix-key
          :wk-full-keys nil
          "" '(:ignore t :wk ,name))
@@ -85,12 +85,13 @@
 
   :config
   ;; basic menu setup
-  (warmacs/leader-keys
+  (warmacs/set-leader-keys
     "!" #'shell-command
     ":" #'eval-expression
     "SPC" '(execute-extended-command :wk "M-x"))
 
   (warmacs/leader-menu "Applications" "a"
+    "l" #'elpaca-manager
     "p" #'list-processes
     "P" #'proced)
 

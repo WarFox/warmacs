@@ -201,7 +201,7 @@
 
   ("C-s" 'consult-line)
 
-  (warmacs/leader-keys
+  (warmacs/set-leader-keys
     "#" #'consult-register
     "*" #'warmacs/search-default
     "/" #'consult-ripgrep
