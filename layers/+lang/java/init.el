@@ -3,8 +3,7 @@
 (use-package lsp-java
   :hook
   ((java-mode java-ts-mode) . lsp-deferred)
-  :general
-
+  :general-config
   ;; key bindings
   (warmacs/local-leader-menu java
       :keymaps '(java-mode-map java-ts-mode-map)

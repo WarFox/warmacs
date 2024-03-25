@@ -2,14 +2,14 @@
 
 (use-package json-ts-mode
   :ensure nil
-  :general
+  :general-config
   (warmacs/local-leader-menu json
       :keymaps '(json-mode-map json-ts-mode-map)
       "=" '(:ignore t :wk "format")
       "h" '(:ignore t :wk "help")))
 
 (use-package jsonnet-mode
-  :general
+  :general-config
   (warmacs/local-leader-menu jsonnet
       :keymaps 'jsonnet-mode-map
       "=" '(:ignore t :wk "format")
@@ -17,7 +17,7 @@
       "=r" '("format-region" . jsonnet-format-region)))
 
 (use-package json-snatcher
-  :general
+  :general-config
   (warmacs/local-leader-menu json-snatcher
       :keymaps '(json-mode-map json-ts-mode-map)
       "hp" '("print-path" . jsons-print-path)))

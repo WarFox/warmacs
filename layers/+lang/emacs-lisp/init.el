@@ -23,7 +23,7 @@
 (use-package elisp-def)
 
 (use-package overseer
-  :general
+  :general-config
   (warmacs/local-leader-menu emacs-lisp
       "t" '(:ignore t :wk "test")
       "ta" #'overseer-test
