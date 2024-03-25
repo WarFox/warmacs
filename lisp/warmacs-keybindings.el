@@ -88,7 +88,7 @@
   (warmacs/set-leader-keys
     "!" #'shell-command
     ":" #'eval-expression
-    "SPC" '(execute-extended-command :wk "M-x"))
+    "SPC" '("M-x" . execute-extended-command))
 
   (warmacs/leader-menu "Applications" "a"
     "l" #'elpaca-manager

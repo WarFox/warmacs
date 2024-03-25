@@ -75,12 +75,12 @@ For use with `sbt:display-buffer-action'."
   :init
   (warmacs/local-leader-menu scala
       "=" '(:ignore t :wk "format")
-      "==" '((lambda () (interactive) (sbt-command "scalafmtAll")) :wk "format-all")
+      "==" '("format-all" . (lambda () (interactive) (sbt-command "scalafmtAll")))
       "b" '(:ignore t :wk "build")
       "b." #'sbt-hydra
       "bb" #'sbt-command
-      "bc" '((lambda () (interactive) (sbt-command "compile")) :wk "compile")
-      "bt" '((lambda () (interactive) (sbt-command "test")) :wk "test")
-      "bT" '((lambda () (interactive) (sbt-command "Test / compile")) :wk "compile-test")))
+      "bc" '("compile" . (lambda () (interactive) (sbt-command "compile")))
+      "bt" '("test" . (lambda () (interactive) (sbt-command "test")))
+      "bT" '("compile-test" . (lambda () (interactive) (sbt-command "Test / compile")))))
 
 (provide '+lang/scala/init)

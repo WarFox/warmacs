@@ -48,10 +48,10 @@ renamed."
   :general
   (warmacs/leader-menu "Files" "f"
     "f" #'find-file
-    "d" #'(warmacs/delete-file :wk "Delete file")
-    "D" #'(warmacs/delete-current-buffer-file :wk "Delete current file")
-    "r" #'(recentf :wk "Recent files")
-    "R" #'(warmacs/rename-current-buffer-file :wk "Rename file")))
+    "d" '("Delete a file" . warmacs/delete-file)
+    "D" '("Delete current file" . warmacs/delete-current-buffer-file)
+    "r" '("Recent files" . recentf)
+    "R" #'("Rename file" . warmacs/rename-current-buffer-file)))
 
 (use-package recentf
   :ensure nil

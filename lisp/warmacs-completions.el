@@ -213,9 +213,9 @@
     "hdm" #'describe-mode
     "jm" #'consult-mark
     "jM" #'consult-global-mark
-    "sb" #'(warmacs/consult-line-multi-project :wk "Search project buffers")
-    "sB" #'(warmacs/consult-line-multi :wk "Search all buffers")
-    "ss" #'(warmacs/consult-line :wk "Search in current buffer")
+    "sb" '("Search project buffers" . warmacs/consult-line-multi-project)
+    "sB" '("Search all buffers" . warmacs/consult-line-multi)
+    "ss" '("Search in current buffer" . warmacs/consult-line)
     "sl" #'consult-line
     "sL" #'consult-line-multi
     "sk" #'consult-keep-lines

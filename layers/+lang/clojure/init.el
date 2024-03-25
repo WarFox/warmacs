@@ -18,7 +18,7 @@
 
       "d" '(:ignore t :wk "debug")
       "db" 'cider-debug-defun-at-point
-      "de" #'((lambda () (interactive) (warmacs/switch-to-buffer cider-error-buffer)) :wk "cider-error-buffer")
+      "de" '("cider-error-buffer" . (lambda () (interactive) (warmacs/switch-to-buffer cider-error-buffer)))
       "di" '(:ignore t :wk "inspect")
       "die" 'cider-inspect-last-sexp
       "dif" 'cider-inspect-defun-at-point
@@ -57,7 +57,7 @@
       "nn" 'cider-ns-reload
       "nN" 'cider-ns-reload-all
 
-      "'"  '(sesman-start :wk "sesman-start")
+      "'"  '("sesman-start" . sesman-start)
       "s"  '(:ignore t :wk "session")
       "sq" 'cider-quit
       "sr" 'cider-restart

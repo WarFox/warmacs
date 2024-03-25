@@ -13,13 +13,13 @@
   (warmacs/local-leader-menu jsonnet
       :keymaps 'jsonnet-mode-map
       "=" '(:ignore t :wk "format")
-      "= =" '(jsonnet-format-buffer :wk "format-buffer")
-      "= r" '(jsonnet-format-region :wk "format-region")))
+      "==" '("format-buffer" . jsonnet-format-buffer)
+      "=r" '("format-region" . jsonnet-format-region)))
 
 (use-package json-snatcher
   :general
   (warmacs/local-leader-menu json-snatcher
       :keymaps '(json-mode-map json-ts-mode-map)
-      "hp" '(jsons-print-path :wk "print-path")))
+      "hp" '("print-path" . jsons-print-path)))
 
 (provide '+lang/json/init)
