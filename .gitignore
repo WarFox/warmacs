@@ -52,3 +52,6 @@ flycheck_*.el
 recentf
 projects
 tree-sitter/
+
+.dap-breakpoints
+workspace/

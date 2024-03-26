@@ -31,16 +31,13 @@
   ;; Spacemacs-like menu
   ;; https://gist.github.com/progfolio/1c96a67fcec7584b31507ef664de36cc
   ;; https://www.reddit.com/r/emacs/comments/des3cl/comment/f2yw45k/?utm_source=share&utm_medium=web2x&context=3
-  (general-def
-    :states '(normal motion visual operator)
-    :prefix-map 'warmacs-leader-map
-    :prefix  warmacs-leader-key
-    :non-normal-prefix (concat "C-" warmacs-leader-key))
 
-  ;; Re-uses warmacs-leader-map
   (general-create-definer warmacs/set-leader-keys
-    :keymaps 'warmacs-leader-map
-    "" '(:ignore t :whick-key "leader key"))
+    :keymaps 'override
+    :states '(normal motion visual operator)
+    :prefix  warmacs-leader-key
+    :non-normal-prefix (concat "C-" warmacs-leader-key)
+    "" '(:ignore t :wk "leader key"))
 
   (general-create-definer warmacs/local-leader-keys
     :major-modes t
@@ -73,15 +70,17 @@
      Parameter mode must be a symbol not end with -mode"
     (declare (indent 2))
     (let ((local-leader-menu-name (concat "warmacs/local-leader-menu-" (symbol-name mode)))
-	  (local-keymap (concat (symbol-name mode) "-mode-map")))
+          (local-keymap (concat (symbol-name mode) "-mode-map")))
       `(progn
-	 (general-create-definer ,(intern local-leader-menu-name)
-	   :wrapping warmacs/local-leader-keys
-	   :keymaps (quote ,(intern local-keymap))
-	   :wk-full-keys nil
-	   "" '(:ignore t :wk ,mode))
-	 (,(intern local-leader-menu-name)
-	  ,@body))))
+         ;; Create new definer for local leader
+         (general-create-definer ,(intern local-leader-menu-name)
+           :wrapping warmacs/local-leader-keys
+           :keymaps (quote ,(intern local-keymap))
+           :wk-full-keys nil
+           "" '(:ignore t :wk ,mode))
+         ;; Use new definer to create bindings
+         (,(intern local-leader-menu-name)
+          ,@body))))
 
   :config
   ;; basic menu setup
