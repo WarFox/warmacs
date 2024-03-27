@@ -28,10 +28,10 @@
   (general-use-package-emit-autoloads t)
   :init
   (general-evil-setup)
+
   ;; Spacemacs-like menu
   ;; https://gist.github.com/progfolio/1c96a67fcec7584b31507ef664de36cc
   ;; https://www.reddit.com/r/emacs/comments/des3cl/comment/f2yw45k/?utm_source=share&utm_medium=web2x&context=3
-
   (general-create-definer warmacs/set-leader-keys
     :keymaps 'override
     :states '(normal motion visual operator)
@@ -56,6 +56,7 @@
        ;; Create new definer for new leader menu
        (general-create-definer ,(intern (format "warmacs/leader-menu-%s" name))
          :wrapping warmacs/set-leader-keys
+         :prefix-map (quote ,(intern (format "warmacs/leader-menu-%s-map" name)))
          :infix ,infix-key
          :wk-full-keys nil
          "" '(:ignore t :wk ,name))
