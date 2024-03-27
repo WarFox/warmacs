@@ -28,16 +28,16 @@
     "d" #'kill-current-buffer
     "e" #'erase-buffer
     "h" #'dashboard-open
-    "m" #'("*Messages*" . (lambda () (interactive) (warmacs/switch-to-buffer "*Messages*")))
+    "m" '("*Messages*" . (lambda () (interactive) (warmacs/switch-to-buffer "*Messages*")))
     "n" #'next-buffer
-    "N" #'("new-buffer" . warmacs/new-buffer)
-    "o" #'("other-buffer" . (lambda () (interactive) (warmacs/switch-to-buffer nil)))
+    "N" '("new-buffer" . warmacs/new-buffer)
+    "o" '("other-buffer" . (lambda () (interactive) (warmacs/switch-to-buffer nil)))
     "p" #'previous-buffer
     "r" #'rename-buffer
-    "s" #'("*scratch*" . scratch-buffer)
-    "S" #'("*scratch*-other-window" . warmacs/scratch-buffer-other-window)
-    "w" #'("*Warnings*" . (lambda () (interactive) (warmacs/switch-to-buffer "*Warnings*")))
-    "y" #'("copy-buffer" . (lambda () (interactive) (clipboard-kill-ring-save (point-min) (point-max))))))
+    "s" '("*scratch*" . scratch-buffer)
+    "S" '("*scratch*-other-window" . warmacs/scratch-buffer-other-window)
+    "w" '("*Warnings*" . (lambda () (interactive) (warmacs/switch-to-buffer "*Warnings*")))
+    "y" '("copy-buffer" . (lambda () (interactive) (clipboard-kill-ring-save (point-min) (point-max))))))
 
 ;; Scratch buffer
 
