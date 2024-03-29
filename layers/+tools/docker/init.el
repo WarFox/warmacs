@@ -6,11 +6,13 @@
     "d" '(:ignore t :wk "Docker")
     "dd" #'docker)
   :general-config
-  (general-nmap :keymaps 'docker-image-mode-map "q" 'quit-window)
-  (general-nmap :keymaps 'docker-container-mode-map "q" 'quit-window)
-  (general-nmap :keymaps 'docker-volume-mode-map "q" 'quit-window)
-  (general-nmap :keymaps 'docker-network-mode-map "q" 'quit-window)
-  (general-nmap :keymaps 'docker-machine-mode-map "q" 'quit-window))
+  (general-nmap
+    :keymaps '(docker-image-mode-map
+               docker-container-mode-map
+               docker-volume-mode-map
+               docker-network-mode-map
+               docker-machine-mode-map)
+    "q" 'quit-window))
 
 (use-package dockerfile-mode
   :general-config

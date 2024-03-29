@@ -54,9 +54,10 @@
   :commands
   (evilnc-comment-operator evilnc-copy-and-comment-operator)
   :general
-  (:keymaps 'evil-normal-state-map
-            "gc" #'evilnc-comment-operator
-            "gC" #'evilnc-copy-and-comment-operator))
+  (general-def
+    :keymaps 'evil-normal-state-map
+    "gc" #'evilnc-comment-operator
+    "gC" #'evilnc-copy-and-comment-operator))
 
 ;; Jump to things in Emacs tree-style
 (use-package avy

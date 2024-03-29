@@ -129,79 +129,80 @@
   ;; (setq consult-project-function nil)
 
   :general
-  ([remap apropos]                       #'consult-apropos)
-  ([remap bookmark-jump]                 #'consult-bookmark)
-  ([remap evil-show-marks]               #'consult-mark)
-  ([remap evil-show-registers]           #'consult-register)
-  ([remap goto-line]                     #'consult-goto-line)
-  ([remap imenu]                         #'consult-imenu)
-  ([remap locate]                        #'consult-locate)
-  ([remap load-theme]                    #'consult-theme)
-  ([remap man]                           #'consult-man)
-  ([remap recentf-open-files]            #'consult-recent-file)
-  ([remap switch-to-buffer]              #'consult-buffer)
-  ([remap switch-to-buffer-other-window] #'consult-buffer-other-window)
-  ([remap switch-to-buffer-other-frame]  #'consult-buffer-other-frame)
-  ([remap projectile-switch-to-buffer]   #'consult-project-buffer)
-  ([remap projectile-switch-project]     #'consult-projectile-switch-project)
-  ([remap projectile-find-file]          #'consult-projectile-find-file)
-  ([remap yank-pop]                      #'consult-yank-pop)
-  ([remap vc-git-grep]                   #'consult-git-grep)
-  ([remap Info-search]                   #'consult-info)
+  (general-def
+    [remap apropos]                       #'consult-apropos
+    [remap bookmark-jump]                 #'consult-bookmark
+    [remap evil-show-marks]               #'consult-mark
+    [remap evil-show-registers]           #'consult-register
+    [remap goto-line]                     #'consult-goto-line
+    [remap imenu]                         #'consult-imenu
+    [remap locate]                        #'consult-locate
+    [remap load-theme]                    #'consult-theme
+    [remap man]                           #'consult-man
+    [remap recentf-open-files]            #'consult-recent-file
+    [remap switch-to-buffer]              #'consult-buffer
+    [remap switch-to-buffer-other-window] #'consult-buffer-other-window
+    [remap switch-to-buffer-other-frame]  #'consult-buffer-other-frame
+    [remap projectile-switch-to-buffer]   #'consult-project-buffer
+    [remap projectile-switch-project]     #'consult-projectile-switch-project
+    [remap projectile-find-file]          #'consult-projectile-find-file
+    [remap yank-pop]                      #'consult-yank-pop
+    [remap vc-git-grep]                   #'consult-git-grep
+    [remap Info-search]                   #'consult-info
 
-  ("C-s" #'consult-line
-   ;; C-c bindings in `mode-specific-map'
-   "C-c M-x" #'consult-mode-command
-   "C-c h" #'consult-history
-   "C-c k" #'consult-kmacro
-   "C-c m" #'consult-man
-   "C-c i" #'consult-info
-   ;; C-x bindings in `ctl-x-map'
-   "C-x M-:" #'consult-complex-command     ;; orig. repeat-complex-command
-   "C-x b" #'consult-buffer                ;; orig. switch-to-buffer
-   "C-x 4b" #'consult-buffer-other-window ;; orig. switch-to-buffer-other-window
-   "C-x 5b" #'consult-buffer-other-frame  ;; orig. switch-to-buffer-other-frame
-   "C-x tb" #'consult-buffer-other-tab    ;; orig. switch-to-buffer-other-tab
-   "C-x rb" #'consult-bookmark            ;; orig. bookmark-jump
-   "C-x pb" #'consult-project-buffer      ;; orig. project-switch-to-buffer
-   ;; Custom M-# bindings for fast register access
-   "M-#" #'consult-register-load
-   "M-'" #'consult-register-store          ;; orig. abbrev-prefix-mark (unrelated)
-   ;; Other custom bindings
-   ;; M-g bindings in `goto-map'
-   "M-g e" #'consult-compile-error
-   "M-g f" #'consult-flycheck              ;; Alternative: consult-flymake
-   "M-g g" #'consult-goto-line             ;; orig. goto-line
-   "M-g M-g" #'consult-goto-line           ;; orig. goto-line
-   "M-g o" #'consult-outline               ;; Alternative: consult-org-heading
-   "M-g m" #'consult-mark
-   "M-g k" #'consult-global-mark
-   "M-g i" #'consult-imenu
-   "M-g I" #'consult-imenu-multi
-   ;; M-s bindings in `search-map'
-   "M-s d" #'consult-find                  ;; Alternative: consult-fd
-   "M-s c" #'consult-locate
-   "M-s g" #'consult-grep
-   "M-s G" #'consult-git-grep
-   "M-s r" #'consult-ripgrep
-   "M-s l" #'consult-line
-   "M-s L" #'consult-line-multi
-   "M-s k" #'consult-keep-lines
-   "M-s u" #'consult-focus-lines
-   ;; Isearch integration
-   "M-s e" #'consult-isearch-history)
+    "C-s" #'consult-line
+    ;; C-c bindings in `mode-specific-map'
+    "C-c M-x" #'consult-mode-command
+    "C-c h" #'consult-history
+    "C-c k" #'consult-kmacro
+    "C-c m" #'consult-man
+    "C-c i" #'consult-info
+    ;; C-x bindings in `ctl-x-map'
+    "C-x M-:" #'consult-complex-command     ;; orig. repeat-complex-command
+    "C-x b" #'consult-buffer                ;; orig. switch-to-buffer
+    "C-x 4b" #'consult-buffer-other-window ;; orig. switch-to-buffer-other-window
+    "C-x 5b" #'consult-buffer-other-frame  ;; orig. switch-to-buffer-other-frame
+    "C-x tb" #'consult-buffer-other-tab    ;; orig. switch-to-buffer-other-tab
+    "C-x rb" #'consult-bookmark            ;; orig. bookmark-jump
+    "C-x pb" #'consult-project-buffer      ;; orig. project-switch-to-buffer
+    ;; Custom M-# bindings for fast register access
+    "M-#" #'consult-register-load
+    "M-'" #'consult-register-store          ;; orig. abbrev-prefix-mark (unrelated)
+    ;; Other custom bindings
+    ;; M-g bindings in `goto-map'
+    "M-g e" #'consult-compile-error
+    "M-g f" #'consult-flycheck              ;; Alternative: consult-flymake
+    "M-g g" #'consult-goto-line             ;; orig. goto-line
+    "M-g M-g" #'consult-goto-line           ;; orig. goto-line
+    "M-g o" #'consult-outline               ;; Alternative: consult-org-heading
+    "M-g m" #'consult-mark
+    "M-g k" #'consult-global-mark
+    "M-g i" #'consult-imenu
+    "M-g I" #'consult-imenu-multi
+    ;; M-s bindings in `search-map'
+    "M-s d" #'consult-find                  ;; Alternative: consult-fd
+    "M-s c" #'consult-locate
+    "M-s g" #'consult-grep
+    "M-s G" #'consult-git-grep
+    "M-s r" #'consult-ripgrep
+    "M-s l" #'consult-line
+    "M-s L" #'consult-line-multi
+    "M-s k" #'consult-keep-lines
+    "M-s u" #'consult-focus-lines
+    ;; Isearch integration
+    "M-s e" #'consult-isearch-history)
 
-  (:keymaps
-   'isearch-mode-map
-   "M-e"   #'consult-isearch-history       ;; orig. isearch-edit-string
-   "M-s e" #'consult-isearch-history       ;; orig. isearch-edit-string
-   "M-s l" #'consult-line                  ;; needed by consult-line to detect isearch
-   "M-s L" #'consult-line-multi)            ;; needed by consult-line to detect isearch
+  (general-def
+    :keymaps 'isearch-mode-map
+    "M-e"   #'consult-isearch-history       ;; orig. isearch-edit-string
+    "M-s e" #'consult-isearch-history       ;; orig. isearch-edit-string
+    "M-s l" #'consult-line                  ;; needed by consult-line to detect isearch
+    "M-s L" #'consult-line-multi)            ;; needed by consult-line to detect isearch
   ;; Minibuffer history
-  (:keymaps
-   'minibuffer-local-map
-   "M-s" #'consult-history                 ;; orig. next-matching-history-element
-   "M-r" #'consult-history)                ;; orig. previous-matching-history-element
+  (general-def
+    :keymaps 'minibuffer-local-map
+    "M-s" #'consult-history                 ;; orig. next-matching-history-element
+    "M-r" #'consult-history)                ;; orig. previous-matching-history-element
 
   (warmacs/set-leader-keys
     "#" #'consult-register
@@ -237,9 +238,10 @@
 
 (use-package embark
   :general
-  ("C-." #'embark-act         ;; pick some comfortable binding
-   "C-;" #'embark-dwim        ;; good alternative: M-.
-   "C-h B" #'embark-bindings) ;; alternative for `describe-bindings'
+  (general-def
+    "C-." #'embark-act         ;; pick some comfortable binding
+    "C-;" #'embark-dwim        ;; good alternative: M-.
+    "C-h B" #'embark-bindings) ;; alternative for `describe-bindings'
 
   :init
 
@@ -289,9 +291,10 @@
   ;; available in the *Completions* buffer, add it to the
   ;; `completion-list-mode-map'.
   :general-config
-  (:keymaps
-   'minibuffer-local-map
-   "M-A" #'marginalia-cycle)
+  (general-def
+    :keymaps
+    'minibuffer-local-map
+    "M-A" #'marginalia-cycle)
 
   ;; The :init section is always executed.
   :init
@@ -348,23 +351,24 @@
   ;; Bind dedicated completion commands
   ;; Alternative prefix keys: C-c p, M-p, M-+, ...
   :general
-  ("C-c dp" #'completion-at-point ;; capf
-   "C-c pt" #'complete-tag        ;; etags
-   "C-c pd" #'cape-dabbrev        ;; or dabbrev-completion
-   "C-c ph" #'cape-history
-   "C-c pf" #'cape-file
-   "C-c pk" #'cape-keyword
-   "C-c ps" #'cape-elisp-symbol
-   "C-c pe" #'cape-elisp-block
-   "C-c pa" #'cape-abbrev
-   "C-c pl" #'cape-line
-   "C-c pw" #'cape-dict
-   "C-c pr" #'cape-rfc1345
-   "C-c p :" #'cape-emoji
-   "C-c p \\" #'cape-tex
-   "C-c p _" #'cape-tex
-   "C-c p ^" #'cape-tex
-   "C-c p &" #'cape-sgml)
+  (general-def
+    "C-c dp" #'completion-at-point ;; capf
+    "C-c pt" #'complete-tag        ;; etags
+    "C-c pd" #'cape-dabbrev        ;; or dabbrev-completion
+    "C-c ph" #'cape-history
+    "C-c pf" #'cape-file
+    "C-c pk" #'cape-keyword
+    "C-c ps" #'cape-elisp-symbol
+    "C-c pe" #'cape-elisp-block
+    "C-c pa" #'cape-abbrev
+    "C-c pl" #'cape-line
+    "C-c pw" #'cape-dict
+    "C-c pr" #'cape-rfc1345
+    "C-c p :" #'cape-emoji
+    "C-c p \\" #'cape-tex
+    "C-c p _" #'cape-tex
+    "C-c p ^" #'cape-tex
+    "C-c p &" #'cape-sgml)
   :init
   ;; Add to the global default value of `completion-at-point-functions' which is
   ;; used by `completion-at-point'.  The order of the functions matters, the

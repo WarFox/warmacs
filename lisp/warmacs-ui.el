@@ -61,16 +61,18 @@
   (centaur-tabs-headline-match)
   (centaur-tabs-group-by-projectile-project)
   (centaur-tabs-mode 1)
-  :general
-  ("C-c t" '(:ignore t :wk "tabs"))
-  ("C-c t s"  'centaur-tabs-switch-group)
-  ("C-c t p"  'centaur-tabs-group-by-projectile-project)
-  ("C-c t g"  'centaur-tabs-group-buffer-groups)
-  (:keymaps 'evil-normal-state-map
-            "g t"      'centaur-tabs-forward
-            "g T"      'centaur-tabs-backward
-            "g C-t"    'centaur-tabs-move-current-tab-to-right
-            "g C-S-t"  'centaur-tabs-move-current-tab-to-left))
+  :general-config
+  (general-def
+    "C-c t" '(:ignore t :wk "tabs")
+    "C-c t s"  #'centaur-tabs-switch-group
+    "C-c t p"  #'centaur-tabs-group-by-projectile-project
+    "C-c t g"  #'centaur-tabs-group-buffer-groups)
+  (general-def
+    :keymaps 'evil-normal-state-map
+    "g t"      #'centaur-tabs-forward
+    "g T"      #'centaur-tabs-backward
+    "g C-t"    #'centaur-tabs-move-current-tab-to-right
+    "g C-S-t"  #'centaur-tabs-move-current-tab-to-left))
 
 ;; Local Variables:
 ;; no-byte-compile: t

@@ -48,17 +48,14 @@ For use with `sbt:display-buffer-action'."
   (setq sbt:display-buffer-action
         (list #'scala/display-sbt-at-bottom))
 
-  :general
-  (:states 'insert :keymaps 'scala-mode-map
-           "RET" #'scala/newline-and-indent-with-asterisk)
-  (:states 'normal :keymaps 'scala-mode-map
-           "J" #'scala/join-line)
-
-  ;; (evil-define-key 'insert scala-mode-map
-  ;;   (kbd "RET") 'scala/newline-and-indent-with-asterisk)
-
-  ;; (evil-define-key 'normal scala-mode-map "J" 'scala/join-line)
-  )
+  :general-config
+  (general-def
+    :states 'insert
+    :keymaps 'scala-mode-map
+    "RET" #'scala/newline-and-indent-with-asterisk)
+  (general-def :states 'normal
+    :keymaps 'scala-mode-map
+    "J" #'scala/join-line))
 
 (use-package sbt-mode
   :after scala-mode

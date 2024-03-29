@@ -28,6 +28,8 @@ If the error list is visible, hide it.  Otherwise, show it."
   :custom
   (flycheck-emacs-lisp-load-path 'inherit)
   :general-config
+  (general-def
+    "C-c !" '(:ignore t :wk "flycheck"))
   (warmacs/leader-menu "Errors" "e"
     "b" #'flycheck-buffer
     "c" #'flycheck-clear
