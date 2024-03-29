@@ -27,8 +27,6 @@
   :custom
   (general-use-package-emit-autoloads t)
   :init
-  (general-evil-setup)
-
   ;; Spacemacs-like menu
   ;; https://gist.github.com/progfolio/1c96a67fcec7584b31507ef664de36cc
   ;; https://www.reddit.com/r/emacs/comments/des3cl/comment/f2yw45k/?utm_source=share&utm_medium=web2x&context=3
@@ -36,8 +34,7 @@
     :keymaps 'override
     :states '(normal motion visual operator)
     :prefix  warmacs-leader-key
-    :non-normal-prefix (concat "C-" warmacs-leader-key)
-    "" '(:ignore t :wk "leader key"))
+    :non-normal-prefix (concat "C-" warmacs-leader-key))
 
   (general-create-definer warmacs/set-local-leader-keys
     :major-modes t
@@ -65,6 +62,24 @@
         ,@body)))
 
   :config
+  (general-evil-setup))
+
+;; Ensure general.el is configured
+(elpaca-wait)
+
+(use-package emacs
+  :ensure nil
+  :general
+  ;; Make <escape> quit as much as possible
+  (general-def
+    :keymaps '(minibuffer-local-map
+               minibuffer-local-ns-map
+               minibuffer-local-completion-map
+               minibuffer-local-must-match-map
+               minibuffer-local-isearch-map)
+    "<escape>" #'keyboard-escape-quit)
+
+  :general-config
   ;; basic menu setup
   (warmacs/set-leader-keys
     "!" #'shell-command
@@ -84,20 +99,5 @@
     "y" #'yank-pop)
 
   (warmacs/leader-menu "Search" "s"))
-
-;; Ensure general.el is configured
-(elpaca-wait)
-
-(use-package emacs
-  :ensure nil
-  :general
-  ;; Make <escape> quit as much as possible
-  (general-def
-    :keymaps '(minibuffer-local-map
-               minibuffer-local-ns-map
-               minibuffer-local-completion-map
-               minibuffer-local-must-match-map
-               minibuffer-local-isearch-map)
-    "<escape>" #'keyboard-escape-quit))
 
 (provide 'warmacs-keybindings)
