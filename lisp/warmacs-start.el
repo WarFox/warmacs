@@ -140,6 +140,7 @@
 (require 'warmacs-help)
 (require 'warmacs-tree-sitter)
 (require 'warmacs-flycheck)
+(require 'warmacs-terminal)
 (require 'default-layers)
 
 ;; Run Hooks
