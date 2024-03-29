@@ -5,7 +5,9 @@
   :general
   (warmacs/leader-menu "help" "h"
     "h" 'helpful-at-point)
-  (:keymaps 'helpful-mode-map :states 'normal "q" 'quit-window)
+  :general-config
+  (general-def
+    :keymaps 'helpful-mode-map :states 'normal "q" 'quit-window)
   ([remap describe-function] #'helpful-function)
   ([remap describe-symbol] #'helpful-symbol)
   ([remap describe-variable] #'helpful-variable)

@@ -12,14 +12,14 @@
   (python-shell-prompt-output-regexp "Out\\[[0-9]+\\]: ")
   (python-shell-prompt-input-regexp "In \\[[0-9]+\\]: ")
   :general-config
-  (warmacs/local-leader-menu python
-      :keymaps '(python-mode-map python-ts-mode-map)
-      "'" #'run-python
-      "b" '(:ignore t :wk "build")
-      "bb"  #'poetry-build
-      "vod" 'poetry-venv-deactivate
-      "vow" 'poetry-venv-workon
-      "vot" 'poetry-venv-toggle))
+  (warmacs/set-local-leader-keys
+    :keymaps '(python-mode-map python-ts-mode-map)
+    "'" #'run-python
+    "b" '(:ignore t :wk "build")
+    "bb"  #'poetry-build
+    "vod" 'poetry-venv-deactivate
+    "vow" 'poetry-venv-workon
+    "vot" 'poetry-venv-toggle))
 
 (use-package lsp-pyright
   :hook

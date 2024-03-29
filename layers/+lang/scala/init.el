@@ -53,7 +53,7 @@ For use with `sbt:display-buffer-action'."
            "RET" #'scala/newline-and-indent-with-asterisk)
   (:states 'normal :keymaps 'scala-mode-map
            "J" #'scala/join-line)
-  
+
   ;; (evil-define-key 'insert scala-mode-map
   ;;   (kbd "RET") 'scala/newline-and-indent-with-asterisk)
 
@@ -72,15 +72,16 @@ For use with `sbt:display-buffer-action'."
    minibuffer-local-completion-map)
   ;; sbt-supershell kills sbt-mode:  https://github.com/hvesalai/emacs-sbt-mode/issues/152
   (setq sbt:program-options '("-Dsbt.supershell=false"))
-  :init
-  (warmacs/local-leader-menu scala
-      "=" '(:ignore t :wk "format")
-      "==" '("format-all" . (lambda () (interactive) (sbt-command "scalafmtAll")))
-      "b" '(:ignore t :wk "build")
-      "b." #'sbt-hydra
-      "bb" #'sbt-command
-      "bc" '("compile" . (lambda () (interactive) (sbt-command "compile")))
-      "bt" '("test" . (lambda () (interactive) (sbt-command "test")))
-      "bT" '("compile-test" . (lambda () (interactive) (sbt-command "Test / compile")))))
+  :general
+  (warmacs/set-local-leader-keys
+    :keymaps 'scala-mode-map
+    "=" '(:ignore t :wk "format")
+    "==" '("format-all" . (lambda () (interactive) (sbt-command "scalafmtAll")))
+    "b" '(:ignore t :wk "build")
+    "b." #'sbt-hydra
+    "bb" #'sbt-command
+    "bc" '("compile" . (lambda () (interactive) (sbt-command "compile")))
+    "bt" '("test" . (lambda () (interactive) (sbt-command "test")))
+    "bT" '("compile-test" . (lambda () (interactive) (sbt-command "Test / compile")))))
 
 (provide '+lang/scala/init)

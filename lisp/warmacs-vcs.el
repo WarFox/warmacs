@@ -21,25 +21,27 @@
     "s"  #'magit-status)
 
   ;; Git Commit Mode
-  (warmacs/local-leader-menu git-commit
-      "a" #'git-commit-ack
-      "b" #'git-commit-search-message-backward
-      "d" #'magit-diff-while-committing
-      "f" #'git-commit-search-message-forward
-      "g" #'git-commit-suggested
-      "i" #'git-commit-insert-trailer
-      "m" #'git-commit-modified
-      "n" #'git-commit-next-message
-      "p" #'git-commit-prev-message
-      "o" #'git-commit-cc
-      "r" #'git-commit-review
-      "R" #'git-commit-reported
-      "s" #'git-commit-signoff
-      "S" #'git-commit-save-message
-      "t" #'git-commit-test
-      ;; with-editor-mode
-      "c" #'with-editor-finish
-      "k" #'with-editor-cancel))
+  :general-config
+  (warmacs/set-local-leader-keys
+    :keymaps 'git-commit-mode-map
+    "a" #'git-commit-ack
+    "b" #'git-commit-search-message-backward
+    "d" #'magit-diff-while-committing
+    "f" #'git-commit-search-message-forward
+    "g" #'git-commit-suggested
+    "i" #'git-commit-insert-trailer
+    "m" #'git-commit-modified
+    "n" #'git-commit-next-message
+    "p" #'git-commit-prev-message
+    "o" #'git-commit-cc
+    "r" #'git-commit-review
+    "R" #'git-commit-reported
+    "s" #'git-commit-signoff
+    "S" #'git-commit-save-message
+    "t" #'git-commit-test
+    ;; with-editor-mode
+    "c" #'with-editor-finish
+    "k" #'with-editor-cancel))
 
 (use-package git-timemachine
   :general
@@ -50,10 +52,12 @@
 
 (use-package gitignore-templates
   :general
-  (warmacs/local-leader-menu gitignore
-      "i" 'gitignore-templates-insert)
   (warmacs/leader-menu "git" "g"
-    "fi" 'gitignore-templates-new-file))
+    "fi" 'gitignore-templates-new-file)
+  :general-config
+  (warmacs/set-local-leader-keys
+    :keymaps 'gitignore-mode-map
+    "i" 'gitignore-templates-insert))
 
 (use-package git-link
   :general

@@ -4,8 +4,8 @@
   :custom
   (rust-format-on-save t)
   :general-config
-  (warmacs/local-leader-menu rust
-      :keymaps '(rust-mode-map rust-ts-mode-map)
-      "=" #'rust-format-buffer))
+  (warmacs/set-local-leader-keys
+    :keymaps '(rust-mode-map rust-ts-mode-map)
+    "=" #'rust-format-buffer))
 
 (provide '+lang/rust/init)

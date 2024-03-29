@@ -39,7 +39,7 @@
     :non-normal-prefix (concat "C-" warmacs-leader-key)
     "" '(:ignore t :wk "leader key"))
 
-  (general-create-definer warmacs/local-leader-keys
+  (general-create-definer warmacs/set-local-leader-keys
     :major-modes t
     :keymaps 'override
     :states '(normal motion visual operator)
@@ -63,25 +63,6 @@
        ;; Use new definer to create bindings
        (,(intern (format "warmacs/leader-menu-%s" name))
         ,@body)))
-
-  ;; Macro for creating a local leader menu
-  (defmacro warmacs/local-leader-menu (mode &rest body)
-    "Create a definer named warmacs/local-leader-menu-MODE wrapping warmacs/local-leader-keys
-     Create prefix map: MODE-mode-map
-     Parameter mode must be a symbol not end with -mode"
-    (declare (indent 2))
-    (let ((local-leader-menu-name (concat "warmacs/local-leader-menu-" (symbol-name mode)))
-          (local-keymap (concat (symbol-name mode) "-mode-map")))
-      `(progn
-         ;; Create new definer for local leader
-         (general-create-definer ,(intern local-leader-menu-name)
-           :wrapping warmacs/local-leader-keys
-           :keymaps (quote ,(intern local-keymap))
-           :wk-full-keys nil
-           "" '(:ignore t :wk ,mode))
-         ;; Use new definer to create bindings
-         (,(intern local-leader-menu-name)
-          ,@body))))
 
   :config
   ;; basic menu setup

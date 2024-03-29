@@ -8,12 +8,13 @@
 ;; LSP
 (use-package lsp-ui
   :general
-  (:keymaps 'lsp-ui-mode-map
-            :states 'normal
-            "gd" #'lsp-ui-peek-find-definitions
-            "gr" #'lsp-ui-peek-find-references
-            "gD" #'lsp-ui-peek-jump-backward
-            "gR" #'lsp-ui-peek-jump-forward)
+  (general-def
+    :keymaps 'lsp-ui-mode-map
+    :states 'normal
+    "gd" #'lsp-ui-peek-find-definitions
+    "gr" #'lsp-ui-peek-find-references
+    "gD" #'lsp-ui-peek-jump-backward
+    "gR" #'lsp-ui-peek-jump-forward)
   ([remap xref-find-definitions] #'lsp-ui-peek-find-definitions)
   ([remap xref-find-references] #'lsp-ui-peek-find-references))
 
@@ -57,49 +58,50 @@
   (push '("*lsp-help*" :dedicated t :position bottom :stick t :noselect t :height 0.4)
         popwin:special-display-config)
 
-  :general
-  (warmacs/local-leader-menu lsp
-      ;; format
-      "=" '(:ignore t :wk "format")
-      "==" #'lsp-format-buffer
-      "=r" #'lsp-format-region
-      "=o" #'lsp-organize-imports
-      ;; code actions
-      "a" '(:ignore t :wk "code actions")
-      "aa" #'lsp-execute-code-action
-      ;; goto
-      ;; N.B. implementation and references covered by xref bindings / lsp provider...
-      "g" '(:ignore t :wk "goto")
-      "gt" #'lsp-find-type-definition
-      "gM" #'lsp-ui-imenu
-      ;; help
-      "h" '(:ignore t :wk "help")
-      "hh" #'lsp-describe-thing-at-point
-      ;; backend
-      "b" '(:ignore t :wk "backend")
-      "bd" #'lsp-describe-session
-      "br" #'lsp-workspace-restart
-      "bs" #'lsp-workspace-shutdown
-      "bv" #'lsp-version
-      ;; refactor
-      "r" '(:ignore t :wk "refactor")
-      "rr" #'lsp-rename
-      ;; toggles
-      "T" '(:ignore t :wk "toggle")
-      "Tl" '(:ignore t :wk "lsp")
-      "Tld" #'lsp-ui-doc-mode
-      "Tls" #'lsp-ui-sideline-mode
-      "Tll" #'lsp-lens-mode
-      ;; folders
-      "F" '(:ignore t :wk "folder")
-      "Fs" #'lsp-workspace-folders-switch
-      "Fr" #'lsp-workspace-folders-remove
-      "Fa" #'lsp-workspace-folders-add
-      ;; text/code
-      "x" '(:ignore t :wk "text/code")
-      "xh" #'lsp-document-highlight
-      "xl" #'lsp-lens-show
-      "xL" #'lsp-lens-hide))
+  :general-config
+  (warmacs/set-local-leader-keys
+   :keymaps 'lsp-mode-map
+   ;; format
+   "=" '(:ignore t :wk "format")
+   "==" #'lsp-format-buffer
+   "=r" #'lsp-format-region
+   "=o" #'lsp-organize-imports
+   ;; code actions
+   "a" '(:ignore t :wk "code actions")
+   "aa" #'lsp-execute-code-action
+   ;; goto
+   ;; N.B. implementation and references covered by xref bindings / lsp provider...
+   "g" '(:ignore t :wk "goto")
+   "gt" #'lsp-find-type-definition
+   "gM" #'lsp-ui-imenu
+   ;; help
+   "h" '(:ignore t :wk "help")
+   "hh" #'lsp-describe-thing-at-point
+   ;; backend
+   "b" '(:ignore t :wk "backend")
+   "bd" #'lsp-describe-session
+   "br" #'lsp-workspace-restart
+   "bs" #'lsp-workspace-shutdown
+   "bv" #'lsp-version
+   ;; refactor
+   "r" '(:ignore t :wk "refactor")
+   "rr" #'lsp-rename
+   ;; toggles
+   "T" '(:ignore t :wk "toggle")
+   "Tl" '(:ignore t :wk "lsp")
+   "Tld" #'lsp-ui-doc-mode
+   "Tls" #'lsp-ui-sideline-mode
+   "Tll" #'lsp-lens-mode
+   ;; folders
+   "F" '(:ignore t :wk "folder")
+   "Fs" #'lsp-workspace-folders-switch
+   "Fr" #'lsp-workspace-folders-remove
+   "Fa" #'lsp-workspace-folders-add
+   ;; text/code
+   "x" '(:ignore t :wk "text/code")
+   "xh" #'lsp-document-highlight
+   "xl" #'lsp-lens-show
+   "xL" #'lsp-lens-hide))
 
 ;; DAP
 

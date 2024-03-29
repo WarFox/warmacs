@@ -40,9 +40,9 @@
   :hook
   ((prog-mode org-mode markdown-mode) . evil-mc-mode)
   :general
-  (:keymaps
-   'evil-normal-state-map
-   "C-n" #'evil-mc-make-cursor-move-next-line))
+  (general-def
+    :keymaps 'evil-normal-state-map
+    "C-n" #'evil-mc-make-cursor-move-next-line))
 
 (use-package evil-surround
   :after evil

@@ -27,7 +27,7 @@ If the error list is visible, hide it.  Otherwise, show it."
   :hook (prog-mode . flycheck-mode)
   :custom
   (flycheck-emacs-lisp-load-path 'inherit)
-  :general
+  :general-config
   (warmacs/leader-menu "Errors" "e"
     "b" #'flycheck-buffer
     "c" #'flycheck-clear
