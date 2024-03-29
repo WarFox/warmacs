@@ -319,9 +319,7 @@
 
   ;; Enable Corfu only for certain modes.
   :hook
-  ((prog-mode . corfu-mode)
-   (shell-mode . corfu-mode)
-   (eshell-mode . corfu-mode))
+  ((prog-mode org-mode shell-mode eshell-mode) . corfu-mode)
 
   ;; Recommended: Enable Corfu globally.  This is recommended since Dabbrev can
   ;; be used globally (M-/).  See also the customization variable
@@ -352,7 +350,9 @@
   ;; Alternative prefix keys: C-c p, M-p, M-+, ...
   :general
   (general-def
+    "M-/" #'hippie-expand
     "C-c dp" #'completion-at-point ;; capf
+    "C-c p" '(:ignore t :wk "cape")
     "C-c pt" #'complete-tag        ;; etags
     "C-c pd" #'cape-dabbrev        ;; or dabbrev-completion
     "C-c ph" #'cape-history
@@ -364,11 +364,9 @@
     "C-c pl" #'cape-line
     "C-c pw" #'cape-dict
     "C-c pr" #'cape-rfc1345
-    "C-c p :" #'cape-emoji
-    "C-c p \\" #'cape-tex
-    "C-c p _" #'cape-tex
-    "C-c p ^" #'cape-tex
-    "C-c p &" #'cape-sgml)
+    "C-c p:" #'cape-emoji
+    "C-c p_" #'cape-tex
+    "C-c p&" #'cape-sgml)
   :init
   ;; Add to the global default value of `completion-at-point-functions' which is
   ;; used by `completion-at-point'.  The order of the functions matters, the
@@ -429,4 +427,42 @@
   :config
   (evil-collection-wgrep-setup))
 
+;; Snippets
+(use-package yasnippet
+  :commands (yas-global-mode yas-minor-mode yas-activate-extra-mode)
+  :preface
+  ;; We don't want undefined variable errors
+  (defvar yas-global-mode nil)
+  (defvar yas-snippet-dirs nil)
+  :hook
+  ((prog-mode org-mode) . yas-minor-mode)
+  :init
+  (setq yas-triggers-in-field t
+        yas-wrap-around-region t)
+  :general-config
+  (general-def
+    :keymaps 'yas-minor-mode-map
+    "M-s-/" #'yas-next-field)
+  :config
+  (yas-reload-all))
+
+(use-package yasnippet-snippets
+  :after yasnippet)
+
+(use-package consult-yasnippet
+  :after (consult yasnippet)
+  :general-config
+  (warmacs/leader-menu "Insert" "i"
+    "s" 'consult-yasnippet)
+  (general-def
+    :keymaps 'yas-minor-mode-map
+    "C-c y" 'consult-yasnippet))
+
+(use-package yasnippet-capf
+  :after yasnippet
+  :config
+  (add-to-list 'completion-at-point-functions 'yasnippet-capf))
+
 (provide 'warmacs-completions)
+
+;;; warmacs-completions.el ends here
