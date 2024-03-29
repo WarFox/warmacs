@@ -46,177 +46,177 @@
         ;; `helm-org-headings-max-depth'.
         org-imenu-depth 8)
 
-
   (autoload #'org-clock-jump-to-current-clock "org-clock")
 
-  :general
-  (warmacs/local-leader-menu org
-      "'" #'org-edit-special
-      "c" #'org-capture
+  :general-config
+  (warmacs/set-local-leader-keys
+    :keymaps 'org-mode-map
+    "'" #'org-edit-special
+    "c" #'org-capture
 
-      ;; Clock
-      ;; These keybindings should match those under the "aoC" prefix (below)
-      "C" '(:ignore t :wk "clock")
-      "Cc" #'org-clock-cancel
-      "Cd" #'org-clock-display
-      "Ce" #'org-evaluate-time-range
-      "Cg" #'org-clock-goto
-      "Ci" #'org-clock-in
-      "CI" #'org-clock-in-last
-      "Co" #'org-clock-out
-      "CR" #'org-clock-report
-      "Cr" #'org-resolve-clocks
+    ;; Clock
+    ;; These keybindings should match those under the "aoC" prefix (below)
+    "C" '(:ignore t :wk "clock")
+    "Cc" #'org-clock-cancel
+    "Cd" #'org-clock-display
+    "Ce" #'org-evaluate-time-range
+    "Cg" #'org-clock-goto
+    "Ci" #'org-clock-in
+    "CI" #'org-clock-in-last
+    "Co" #'org-clock-out
+    "CR" #'org-clock-report
+    "Cr" #'org-resolve-clocks
 
-      "d" '(:ignore t :wk "date")
-      "dd" #'org-deadline
-      "ds" #'org-schedule
-      "dt" #'org-time-stamp
-      "dT" #'org-time-stamp-inactive
+    "d" '(:ignore t :wk "date")
+    "dd" #'org-deadline
+    "ds" #'org-schedule
+    "dt" #'org-time-stamp
+    "dT" #'org-time-stamp-inactive
 
-      "e" '(:ignore t :wk "export")
-      "ee" #'org-export-dispatch
+    "e" '(:ignore t :wk "export")
+    "ee" #'org-export-dispatch
 
-      "f" '(:ignore t :wk "feed")
-      "fi" #'org-feed-goto-inbox
-      "fu" #'org-feed-update-all
+    "f" '(:ignore t :wk "feed")
+    "fi" #'org-feed-goto-inbox
+    "fu" #'org-feed-update-all
 
-      "a" #'org-agenda
-      "[" #'org-agenda-file-to-front
-      "]" #'org-remove-file
+    "a" #'org-agenda
+    "[" #'org-agenda-file-to-front
+    "]" #'org-remove-file
 
-      "p" #'org-priority
+    "p" #'org-priority
 
-      "T" '(:ignore t :wk "toggle")
-      "Tc" #'org-toggle-checkbox
-      "Te" #'org-toggle-pretty-entities
-      "Ti" #'org-toggle-inline-images
-      "Tn" #'org-num-mode
-      "Tl" #'org-toggle-link-display
-      "Tt" #'org-show-todo-tree
-      "TT" #'org-todo
-      "TV" #'space-doc-mode
-      "Tx" #'org-latex-preview
+    "T" '(:ignore t :wk "toggle")
+    "Tc" #'org-toggle-checkbox
+    "Te" #'org-toggle-pretty-entities
+    "Ti" #'org-toggle-inline-images
+    "Tn" #'org-num-mode
+    "Tl" #'org-toggle-link-display
+    "Tt" #'org-show-todo-tree
+    "TT" #'org-todo
+    "TV" #'space-doc-mode
+    "Tx" #'org-latex-preview
 
-      ;; More cycling options (timestamps, headlines, items, properties)
-      "L" #'org-shiftright
-      "H" #'org-shiftleft
-      "J" #'org-shiftdown
-      "K" #'org-shiftup
+    ;; More cycling options (timestamps, headlines, items, properties)
+    "L" #'org-shiftright
+    "H" #'org-shiftleft
+    "J" #'org-shiftdown
+    "K" #'org-shiftup
 
-      ;; Change between TODO sets
-      "C-S-l" #'org-shiftcontrolright
-      "C-S-h" #'org-shiftcontrolleft
-      "C-S-j" #'org-shiftcontroldown
-      "C-S-k" #'org-shiftcontrolup
+    ;; Change between TODO sets
+    "C-S-l" #'org-shiftcontrolright
+    "C-S-h" #'org-shiftcontrolleft
+    "C-S-j" #'org-shiftcontroldown
+    "C-S-k" #'org-shiftcontrolup
 
-      ;; Subtree editing
-      "s" '(:ignore t :wk "subtree")
-      "sa" #'org-toggle-archive-tag
-      "sA" #'org-archive-subtree-default
-      "sb" #'org-tree-to-indirect-buffer
-      "sd" #'org-cut-subtree
-      "sy" #'org-copy-subtree
-      "sp" #'org-paste-subtree
-      "sh" #'org-promote-subtree
-      "sj" #'org-move-subtree-down
-      "sk" #'org-move-subtree-up
-      "sl" #'org-demote-subtree
-      "sn" #'org-narrow-to-subtree
-      "sw" 'widen
-      "sr" #'org-refile
-      "ss" #'org-sparse-tree
-      "sS" #'org-sort
+    ;; Subtree editing
+    "s" '(:ignore t :wk "subtree")
+    "sa" #'org-toggle-archive-tag
+    "sA" #'org-archive-subtree-default
+    "sb" #'org-tree-to-indirect-buffer
+    "sd" #'org-cut-subtree
+    "sy" #'org-copy-subtree
+    "sp" #'org-paste-subtree
+    "sh" #'org-promote-subtree
+    "sj" #'org-move-subtree-down
+    "sk" #'org-move-subtree-up
+    "sl" #'org-demote-subtree
+    "sn" #'org-narrow-to-subtree
+    "sw" 'widen
+    "sr" #'org-refile
+    "ss" #'org-sparse-tree
+    "sS" #'org-sort
 
-      ;; tables
-      "t" '(:ignore t :wk "table")
-      "ta" #'org-table-align
-      "tb" #'org-table-blank-field
-      "tc" #'org-table-convert
-      "td" '(:ignore t :wk "delete")
-      "tdc" #'org-table-delete-column
-      "tdr" #'org-table-kill-row
-      "te" #'org-table-eval-formula
-      "tE" #'org-table-export
-      "tf" #'org-table-field-info
-      "th" #'org-table-previous-field
-      "tH" #'org-table-move-column-left
-      "ti" '(:ignore t :wk "insert")
-      "tic" #'org-table-insert-column
-      "tih" #'org-table-insert-hline
-      "tiH" #'org-table-hline-and-move
-      "tir" #'org-table-insert-row
-      "tI" #'org-table-import
-      "tj" #'org-table-next-row
-      "tJ" #'org-table-move-row-down
-      "tK" #'org-table-move-row-up
-      "tl" #'org-table-next-field
-      "tL" #'org-table-move-column-right
-      "tn" #'org-table-create
-      "tN" #'org-table-create-with-table.el
-      "tr" #'org-table-recalculate
-      "tR" #'org-table-recalculate-buffer-tables
-      "ts" #'org-table-sort-lines
-      "tt" '(:ignore t :wk "toggle")
-      "ttf" #'org-table-toggle-formula-debugger
-      "tto" #'org-table-toggle-coordinate-overlays
-      "tw" #'org-table-wrap-region
+    ;; tables
+    "t" '(:ignore t :wk "table")
+    "ta" #'org-table-align
+    "tb" #'org-table-blank-field
+    "tc" #'org-table-convert
+    "td" '(:ignore t :wk "delete")
+    "tdc" #'org-table-delete-column
+    "tdr" #'org-table-kill-row
+    "te" #'org-table-eval-formula
+    "tE" #'org-table-export
+    "tf" #'org-table-field-info
+    "th" #'org-table-previous-field
+    "tH" #'org-table-move-column-left
+    "ti" '(:ignore t :wk "insert")
+    "tic" #'org-table-insert-column
+    "tih" #'org-table-insert-hline
+    "tiH" #'org-table-hline-and-move
+    "tir" #'org-table-insert-row
+    "tI" #'org-table-import
+    "tj" #'org-table-next-row
+    "tJ" #'org-table-move-row-down
+    "tK" #'org-table-move-row-up
+    "tl" #'org-table-next-field
+    "tL" #'org-table-move-column-right
+    "tn" #'org-table-create
+    "tN" #'org-table-create-with-table.el
+    "tr" #'org-table-recalculate
+    "tR" #'org-table-recalculate-buffer-tables
+    "ts" #'org-table-sort-lines
+    "tt" '(:ignore t :wk "toggle")
+    "ttf" #'org-table-toggle-formula-debugger
+    "tto" #'org-table-toggle-coordinate-overlays
+    "tw" #'org-table-wrap-region
 
-      ;; Source blocks / org-babel
-      "b" '(:ignore t :wk "babel")
-      "bp" #'org-babel-previous-src-block
-      "bn"     #'org-babel-next-src-block
-      "be"     #'org-babel-execute-maybe
-      "bo"     #'org-babel-open-src-block-result
-      "bv"     #'org-babel-expand-src-block
-      "bu"     #'org-babel-goto-src-block-head
-      "bg"     #'org-babel-goto-named-src-block
-      "br"     #'org-babel-goto-named-result
-      "bb"     #'org-babel-execute-buffer
-      "bs"     #'org-babel-execute-subtree
-      "bd"     #'org-babel-demarcate-block
-      "bt"     #'org-babel-tangle
-      "bf"     #'org-babel-tangle-file
-      "bc"     #'org-babel-check-src-block
-      "bj"     #'org-babel-insert-header-arg
-      "bl"     #'org-babel-load-in-session
-      "bi"     #'org-babel-lob-ingest
-      "bI"     #'org-babel-view-src-block-info
-      "bz"     #'org-babel-switch-to-session
-      "bZ"     #'org-babel-switch-to-session-with-code
-      "ba"     #'org-babel-sha1-hash
-      "bx"     #'org-babel-do-key-sequence-in-edit-buffer
-      ;; Multi-purpose keys
-      "," #'org-ctrl-c-ctrl-c
-      "*" #'org-ctrl-c-star
-      "-" #'org-ctrl-c-minus
-      "#" #'org-update-statistics-cookies
-      "RET"   #'org-ctrl-c-ret
-      "M-RET" #'org-meta-return
-      ;; attachments
-      "A" #'org-attach
-      ;; insertion
-      "i" '(:ignore t :wk "insert")
-      "ib" #'org-insert-structure-template
-      "id" #'org-insert-drawer
-      "ie" #'org-set-effort
-      "if" #'org-footnote-new
-      "ih" #'org-insert-heading
-      "iH" #'org-insert-heading-after-current
-      "ii" #'org-insert-item
-      "il" #'org-insert-link
-      "in" #'org-add-note
-      "ip" #'org-set-property
-      "is" #'org-insert-subheading
-      "it" #'org-set-tags-command
-      ;; region manipulation
-      "x" '(:ignore t :wk "text")
-      "xo" #'org-open-at-point)
+    ;; Source blocks / org-babel
+    "b" '(:ignore t :wk "babel")
+    "bp" #'org-babel-previous-src-block
+    "bn"     #'org-babel-next-src-block
+    "be"     #'org-babel-execute-maybe
+    "bo"     #'org-babel-open-src-block-result
+    "bv"     #'org-babel-expand-src-block
+    "bu"     #'org-babel-goto-src-block-head
+    "bg"     #'org-babel-goto-named-src-block
+    "br"     #'org-babel-goto-named-result
+    "bb"     #'org-babel-execute-buffer
+    "bs"     #'org-babel-execute-subtree
+    "bd"     #'org-babel-demarcate-block
+    "bt"     #'org-babel-tangle
+    "bf"     #'org-babel-tangle-file
+    "bc"     #'org-babel-check-src-block
+    "bj"     #'org-babel-insert-header-arg
+    "bl"     #'org-babel-load-in-session
+    "bi"     #'org-babel-lob-ingest
+    "bI"     #'org-babel-view-src-block-info
+    "bz"     #'org-babel-switch-to-session
+    "bZ"     #'org-babel-switch-to-session-with-code
+    "ba"     #'org-babel-sha1-hash
+    "bx"     #'org-babel-do-key-sequence-in-edit-buffer
+    ;; Multi-purpose keys
+    "," #'org-ctrl-c-ctrl-c
+    "*" #'org-ctrl-c-star
+    "-" #'org-ctrl-c-minus
+    "#" #'org-update-statistics-cookies
+    "RET"   #'org-ctrl-c-ret
+    "M-RET" #'org-meta-return
+    ;; attachments
+    "A" #'org-attach
+    ;; insertion
+    "i" '(:ignore t :wk "insert")
+    "ib" #'org-insert-structure-template
+    "id" #'org-insert-drawer
+    "ie" #'org-set-effort
+    "if" #'org-footnote-new
+    "ih" #'org-insert-heading
+    "iH" #'org-insert-heading-after-current
+    "ii" #'org-insert-item
+    "il" #'org-insert-link
+    "in" #'org-add-note
+    "ip" #'org-set-property
+    "is" #'org-insert-subheading
+    "it" #'org-set-tags-command
+    ;; region manipulation
+    "x" '(:ignore t :wk "text")
+    "xo" #'org-open-at-point)
 
-  (:keymaps
-   'global-map
-   "\C-cl" #'org-store-link
-   "\C-ca" #'org-agenda
-   "\C-cc" #'org-capture))
+  (general-def
+    :keymaps 'global-map
+    "\C-cl" #'org-store-link
+    "\C-ca" #'org-agenda
+    "\C-cc" #'org-capture))
 
 (use-package org-agenda
   :ensure nil
@@ -251,21 +251,23 @@
     "os" #'org-search-view
     "ot" #'org-todo-list)
 
-  (warmacs/local-leader-menu org-agenda
-      (or warmacs-local-leader-key ",") #'org-agenda-ctrl-c-ctrl-c
-      "a" #'org-agenda
-      "c" #'org-agenda-capture
-      "Cc" #'org-agenda-clock-cancel
-      "Ci" #'org-agenda-clock-in
-      "Co" #'org-agenda-clock-out
-      "Cj" #'org-agenda-clock-goto
-      "dd" #'org-agenda-deadline
-      "ds" #'org-agenda-schedule
-      "ie" #'org-agenda-set-effort
-      "ip" #'org-agenda-set-property
-      "iP" #'org-agenda-priority
-      "it" #'org-agenda-set-tags
-      "sr" #'org-agenda-refile))
+  :general-config
+  (warmacs/set-local-leader-keys
+   :keymaps 'org-agenda-mode-map
+   warmacs-local-leader-key #'org-agenda-ctrl-c-ctrl-c
+   "a" #'org-agenda
+   "c" #'org-agenda-capture
+   "Cc" #'org-agenda-clock-cancel
+   "Ci" #'org-agenda-clock-in
+   "Co" #'org-agenda-clock-out
+   "Cj" #'org-agenda-clock-goto
+   "dd" #'org-agenda-deadline
+   "ds" #'org-agenda-schedule
+   "ie" #'org-agenda-set-effort
+   "ip" #'org-agenda-set-property
+   "iP" #'org-agenda-priority
+   "it" #'org-agenda-set-tags
+   "sr" #'org-agenda-refile))
 
 (use-package org-projectile
   :commands (org-projectile-location-for-project)
@@ -295,18 +297,39 @@
   :general
   (warmacs/leader-menu "Applications" "a"
     "or" '(:ignore t :wk "org-roam")
+    "ora" #'org-roam-alias-add
+    "orc" #'org-roam-capture
+    "ord" '(:ignore t :wk "dailies")
     "ordy" #'org-roam-dailies-goto-yesterday
     "ordt" #'org-roam-dailies-goto-today
     "ordT" #'org-roam-dailies-goto-tomorrow
     "ordd" #'org-roam-dailies-goto-date
-    "orc" #'org-roam-capture
     "orf" #'org-roam-node-find
     "org" #'org-roam-graph
     "ori" #'org-roam-node-insert
+    "orj" #'org-roam-dailies-capture-today
     "orl" #'org-roam-buffer-toggle
+    "ort" '(:ignore t :wk "tags")
     "orta" #'org-roam-tag-add
-    "ortr" #'org-roam-tag-remove
-    "ora" #'org-roam-alias-add)
+    "ortr" #'org-roam-tag-remove)
+  (warmacs/set-local-leader-keys
+    :keymaps 'org-mode-map
+    "r" '(:ignore t :wk "org-roam")
+    "ra" #'org-roam-alias-add
+    "rc" #'org-roam-capture
+    "rd" '(:ignore t :wk "dailies")
+    "rdy" #'org-roam-dailies-goto-yesterday
+    "rdt" #'org-roam-dailies-goto-today
+    "rdT" #'org-roam-dailies-goto-tomorrow
+    "rdd" #'org-roam-dailies-goto-date
+    "rf" #'org-roam-node-find
+    "rg" #'org-roam-graph
+    "ri" #'org-roam-node-insert
+    "rj" #'org-roam-dailies-capture-today
+    "rl" #'org-roam-buffer-toggle
+    "rt" '(:ignore t :wk "tags")
+    "rta" #'org-roam-tag-add
+    "rtr" #'org-roam-tag-remove)
   :custom
   (org-roam-db-location "~/.org-roam.db")
   (org-roam-directory (file-truename "~/Dropbox/org-mode/"))
@@ -349,11 +372,12 @@
 
 (use-package org-roam-ui
   :after org-roam
-  :init
+  :general
   (warmacs/leader-menu "Applications" "a"
     "oru" #'org-roam-ui-mode)
-  (warmacs/local-leader-menu org-mode
-      "ru" #'org-roam-ui-mode)
+  (warmacs/set-local-leader-keys
+   :keymaps 'org-mode-map
+   "ru" #'org-roam-ui-mode)
   :config
   (setq org-roam-ui-sync-theme t
         org-roam-ui-follow t
