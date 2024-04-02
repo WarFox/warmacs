@@ -15,9 +15,9 @@
     "fD" #'magit-file-delete
     "fm" #'magit-file-dispatch
     "fr" #'magit-file-rename
+    "g"  #'magit-dispatch
     "i"  #'magit-init
     "L"  #'magit-list-repositories
-    "m"  #'magit-dispatch
     "s"  #'magit-status)
 
   ;; Git Commit Mode
