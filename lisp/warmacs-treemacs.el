@@ -101,9 +101,10 @@
 (use-package treemacs-magit
   :after (treemacs magit))
 
-(use-package treemacs-persp ;;treemacs-perspective if you use perspective.el vs. persp-mode
-  :after (treemacs persp-mode) ;;or perspective vs. persp-mode
-  :config (treemacs-set-scope-type 'Perspectives))
+(use-package treemacs-perspective
+  :after (treemacs perspective)
+  :config
+  (treemacs-set-scope-type 'Perspectives))
 
 (use-package treemacs-tab-bar ;;treemacs-tab-bar if you use tab-bar-mode
   :after (treemacs)
