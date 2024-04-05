@@ -344,13 +344,20 @@
         completion-category-defaults nil
         completion-category-overrides '((file (styles partial-completion)))))
 
+(use-package hippie
+  :ensure nil
+  :init
+  (add-to-list 'hippie-expand-try-functions-list #'yas-hippie-try-expand)
+  :general
+  (general-def
+    "M-/" #'hippie-expand))
+
 ;; Add extensions
 (use-package cape
   ;; Bind dedicated completion commands
   ;; Alternative prefix keys: C-c p, M-p, M-+, ...
   :general
   (general-def
-    "M-/" #'hippie-expand
     "C-c dp" #'completion-at-point ;; capf
     "C-c p" '(:ignore t :wk "cape")
     "C-c pt" #'complete-tag        ;; etags
@@ -442,7 +449,7 @@
   :general-config
   (general-def
     :keymaps 'yas-minor-mode-map
-    "M-s-/" #'yas-next-field)
+    "M-s-/" #'yas-expand)
   :config
   (yas-reload-all))
 
