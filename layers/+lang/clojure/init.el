@@ -1,12 +1,13 @@
 ;; +lang/clojure/init.el -*- lexical-binding: t; -*-
 
-(use-package clojure-mode)
+(use-package clojure-ts-mode
+  :mode "\\.clj\\'")
 
-(use-package clojure-ts-mode)
-
-(use-package sesman)
+(use-package sesman
+  :commands sesman-start)
 
 (use-package cider
+  :commands (cider-jack-in cider-jack-in-clj cider-jack-in-cljs cider-jack-in-clj&cljs cider-connect)
   :hook ((clojure-mode clojure-ts-mode) . cider-mode)
   :general-config
   (warmacs/set-local-leader-keys
@@ -71,8 +72,6 @@
   :hook ((clojure-mode clojure-ts-mode) . clj-refactor-mode)
   :preface
   (add-to-list 'elpaca-ignored-dependencies 'inflections)
-  :init
-  (add-hook 'clojure-mode-hook 'clj-refactor-mode)
   :config
   (cljr-add-keybindings-with-prefix "C-c C-m")
   ;; Usually we do not set keybindings in :config, however this must be done

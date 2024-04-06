@@ -11,14 +11,19 @@
 
 (use-package import-js)
 
-(use-package js-doc)
+(use-package js-doc
+  :after js2-mode)
 
-(use-package js2-mode)
+(use-package js2-mode
+  :after javascript-mode)
 
-(use-package js2-refactor)
+(use-package js2-refactor
+  :after js2-mode)
 
-(use-package nodejs-repl)
+(use-package nodejs-repl
+  :after js2-mode)
 
-(use-package prettier-js)
+(use-package prettier-js
+  :after js2-mode)
 
 (provide '+lang/javascript/init)

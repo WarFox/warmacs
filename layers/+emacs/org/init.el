@@ -19,12 +19,14 @@
 ;;; Packages
 
 (use-package evil-org
+  :after org
   :config
   (setq evil-org-use-additional-insert t))
 
 (use-package htmlize)
 
 (use-package org
+  :mode ("\\.org\\'" . org-mode)
   :ensure nil ;; org-mode is installed in warmacs-packages.el early in the startup process
   :commands (orgtbl-mode)
   :init

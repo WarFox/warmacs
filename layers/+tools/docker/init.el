@@ -1,6 +1,7 @@
 ;; +tools/docker/init.el -*- lexical-binding: t; -*-
 
 (use-package docker
+  :commands (docker docker-images docker-containers)
   :general
   (warmacs/leader-menu-Applications
     "d" '(:ignore t :wk "Docker")
@@ -15,6 +16,7 @@
     "q" 'quit-window))
 
 (use-package dockerfile-mode
+  :mode "Dockerfile\\'"
   :general-config
   (warmacs/set-local-leader-keys
     :keymaps 'dockerfile-mode-map

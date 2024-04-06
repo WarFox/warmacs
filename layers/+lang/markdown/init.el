@@ -1,6 +1,8 @@
 ;; +lang/markdown/init.el -*- lexical-binding: t; -*-
 
 (use-package markdown-mode
+  :mode (("\\.md\\'" . markdown-mode)
+         ("README\\.md\\'" . gfm-mode))
   :custom
   (markdown-command "multimarkdown")
   (markdown-enable-math t)

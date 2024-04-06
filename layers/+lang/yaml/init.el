@@ -1,6 +1,7 @@
 ;; yaml  -*- lexical-binding: t; -*-
 
 (use-package yaml-mode
+  :mode "\\.ya?ml\\'"
   :general-config
   (warmacs/set-local-leader-keys
     :keymaps '(yaml-mode-map yaml-ts-mode-map)
@@ -9,6 +10,7 @@
     "=r" '("format-region" . yaml-mode-format-region)))
 
 (use-package yaml-tomato
+  :after yaml-mode
   :general-config
   (warmacs/set-local-leader-keys
     :keymaps '(yaml-mode-map yaml-ts-mode-map)

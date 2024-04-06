@@ -1,6 +1,7 @@
 ;; -*- lexical-binding: t; -*-
 
 (use-package python-mode
+  :mode ("\\.py\\'" . python-mode)
   :hook
   ((python-mode python-ts-mode) . flycheck-mode)
   :custom
@@ -22,6 +23,7 @@
     "vot" 'poetry-venv-toggle))
 
 (use-package lsp-pyright
+  :after python-mode
   :hook
   ((python-mode python-ts-mode) . (lambda ()
                                     (require 'lsp-pyright)

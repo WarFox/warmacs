@@ -2,6 +2,7 @@
 
 (use-package json-ts-mode
   :ensure nil
+  :mode "\\.json\\'"
   :general-config
   (warmacs/set-local-leader-keys
     :keymaps '(json-mode-map json-ts-mode-map)
@@ -9,6 +10,7 @@
     "h" '(:ignore t :wk "help")))
 
 (use-package jsonnet-mode
+  :mode "\\.jsonnet\\'"
   :general-config
   (warmacs/set-local-leader-keys
     :keymaps 'jsonnet-mode-map
@@ -19,7 +21,7 @@
 (use-package json-snatcher
   :general-config
   (warmacs/set-local-leader-keys json-snatcher-mode-map
-      :keymaps '(json-mode-map json-ts-mode-map)
-      "hp" '("print-path" . jsons-print-path)))
+    :keymaps '(json-mode-map json-ts-mode-map)
+    "hp" '("print-path" . jsons-print-path)))
 
 (provide '+lang/json/init)

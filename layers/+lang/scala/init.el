@@ -4,6 +4,7 @@
 ;; Scala Layer
 
 (use-package scala-mode
+  :mode "\\.s\\(cala\\|bt\\)$"
   :custom
   ;; Compatibility with `aggressive-indent'
   (scala-indent:align-forms t)
@@ -69,7 +70,7 @@ For use with `sbt:display-buffer-action'."
    minibuffer-local-completion-map)
   ;; sbt-supershell kills sbt-mode:  https://github.com/hvesalai/emacs-sbt-mode/issues/152
   (setq sbt:program-options '("-Dsbt.supershell=false"))
-  :general
+  :general-config
   (warmacs/set-local-leader-keys
     :keymaps 'scala-mode-map
     "=" '(:ignore t :wk "format")

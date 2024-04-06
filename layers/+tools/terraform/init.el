@@ -8,6 +8,7 @@
     "h" '(:ignore t :wk "Help")
     "hh" #'terraform-doc-at-point))
 
-(use-package terraform-doc)
+(use-package terraform-doc
+  :after terraform-mode)
 
 (provide '+tools/terraform/init)
