@@ -9,10 +9,13 @@
 ;;; Code:
 
 (use-package persp-projectile
+  :demand t
   :after (perspective projectile)) ;; persp-mode extension for projectile
 
 ;; original persp-mode
 (use-package perspective
+  :hook
+  (elpaca-after-init . persp-mode)
   :bind
   ("C-x C-b" . persp-list-buffers)         ; or use a nicer switcher, see below
   :custom
@@ -25,9 +28,7 @@
   (persp-nil-name "default")
   (persp-nil-hidden t)
   (persp-autokill-buffer-on-remove 'kill-weak)
-  :init
-  (persp-mode 1)
-  :general
+  :general-config
   (warmacs/leader-menu "Layouts" "l"
     :prefix-map 'perspective-map
     "l" #'persp-switch))
