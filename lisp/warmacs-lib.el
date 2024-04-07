@@ -17,10 +17,13 @@
        ;; This check is not required on startup
        ;; TODO optimising for only when loading after startup might save time
        (when (featurep (quote ,init-feature))
-	 (unload-feature (quote ,init-feature) t))
+         (unload-feature (quote ,init-feature) t))
        ;; Load the layer using use-package
        (use-package ,init-feature
-	 :ensure nil
+         :ensure nil
+         ;; Load the layer immediately
+         ;; use-package declarations in layer files will be deferred
+         :demand t
          ,@body)
 
        ;; Add the layer to the list of loaded layers
