@@ -13,6 +13,8 @@
 
 ;; setup keybindings
 (use-package which-key
+  :hook
+  (elpaca-after-init . which-key-mode)
   :config
   (which-key-mode 1)
   :custom

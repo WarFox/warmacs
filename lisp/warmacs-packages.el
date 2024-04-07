@@ -51,7 +51,8 @@
   ;; Enable Elpaca support for use-package's :ensure keyword.
   (elpaca-use-package-mode)
   ;; Assume :ensure t unless specified otherwise
-  (setq use-package-always-ensure t))
+  (setq use-package-always-ensure t
+        use-package-always-defer t))
 
 ;; Block until current queue processed.
 ;; Necessary to use the Elpaca's `:ensure` support after this point
@@ -78,7 +79,10 @@
   (evil-mode 1))
 
 (use-package evil-collection
+  :demand t
   :after evil
+  :custom
+  (evil-collection-setup-minibuffer t)
   :config
   (evil-collection-init))
 

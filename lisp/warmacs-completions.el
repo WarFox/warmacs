@@ -263,49 +263,34 @@
 
 ;; Enable vertico
 (use-package vertico
-  :init
-  (vertico-mode 1)
-
+  :hook
+  (elpaca-after-init . vertico-mode)
+  :custom
   ;; Different scroll margin
-  ;; (setq vertico-scroll-margin 0)
-
+  (vertico-scroll-margin 0)
   ;; Show more candidates
-  ;; (setq vertico-count 20)
-
+  (vertico-count 20)
   ;; Grow and shrink the Vertico minibuffer
-  ;; (setq vertico-resize t)
-
+  (vertico-resize t)
   ;; Optionally enable cycling for `vertico-next' and `vertico-previous'.
-  ;; (setq vertico-cycle t)
-  )
-
-;; Show completions in a child frame overlay
-(use-package vertico-posframe
-  :after vertico
-  :config
-  (vertico-posframe-mode 1))
+  (vertico-cycle t))
 
 ;; Enable rich annotations using the Marginalia package
 (use-package marginalia
-  ;; Bind `marginalia-cycle' locally in the minibuffer.  To make the binding
-  ;; available in the *Completions* buffer, add it to the
-  ;; `completion-list-mode-map'.
+  :hook
+  (elpaca-after-init . marginalia-mode)
   :general-config
+  ;; Bind `marginalia-cycle' the minibuffer and *Completions* buffer
   (general-def
-    :keymaps
-    'minibuffer-local-map
-    "M-A" #'marginalia-cycle)
-
-  ;; The :init section is always executed.
-  :init
-
-  ;; Marginalia must be activated in the :init section of use-package such that
-  ;; the mode gets enabled right away. Note that this forces loading the
-  ;; package.
-  (marginalia-mode 1))
+    :keymaps '(minibuffer-local-map completion-list-mode-map)
+    "M-m" #'marginalia-cycle))
 
 ;; Corfu - completion ui
 (use-package corfu
+  ;; Enable Corfu only for certain modes.
+  :hook
+  ((prog-mode org-mode shell-mode eshell-mode) . corfu-mode)
+
   :custom
   (corfu-cycle t)                ;; Enable cycling for `corfu-next/previous'
   (corfu-auto t)                 ;; Enable auto completion
@@ -317,10 +302,6 @@
   (corfu-on-exact-match nil)     ;; Configure handling of exact matches
   (corfu-scroll-margin 5)        ;; Use scroll margin
 
-  ;; Enable Corfu only for certain modes.
-  :hook
-  ((prog-mode org-mode shell-mode eshell-mode) . corfu-mode)
-
   ;; Recommended: Enable Corfu globally.  This is recommended since Dabbrev can
   ;; be used globally (M-/).  See also the customization variable
   ;; `global-corfu-modes' to exclude certain modes.
@@ -331,7 +312,6 @@
   ;; Enable indentation+completion using the TAB key.
   ;; `completion-at-point' is often bound to M-TAB.
   (setq tab-always-indent 'complete)
-  :init
   (global-corfu-mode 1))
 
 ;; Use the `orderless' completion style.
@@ -393,6 +373,7 @@
   (add-to-list 'completion-at-point-functions #'cape-line))
 
 (use-package nerd-icons-corfu
+  :demand t
   :after corfu
   :config
   (add-to-list 'corfu-margin-formatters #'nerd-icons-corfu-formatter))
@@ -436,17 +417,17 @@
 
 ;; Snippets
 (use-package yasnippet
-  :commands (yas-global-mode yas-minor-mode yas-activate-extra-mode)
+  :commands (yas-expand yas-hippie-try-expand yas-global-mode yas-minor-mode yas-activate-extra-mode)
   :preface
   ;; We don't want undefined variable errors
   (defvar yas-global-mode nil)
   (defvar yas-snippet-dirs nil)
   :hook
-  ((prog-mode org-mode) . yas-minor-mode)
-  :init
-  (setq yas-triggers-in-field t
-        yas-wrap-around-region t)
-  :general-config
+  ((prog-mode org-mode text-mode conf-mode snippet-mode) . yas-minor-mode)
+  :custom
+  (yas-triggers-in-field t)
+  (yas-wrap-around-region t)
+  :general
   (general-def
     :keymaps 'yas-minor-mode-map
     "M-s-/" #'yas-expand)
@@ -454,6 +435,7 @@
   (yas-reload-all))
 
 (use-package yasnippet-snippets
+  :commands (yas-expand yas-hippie-try-expand)
   :after yasnippet)
 
 (use-package consult-yasnippet

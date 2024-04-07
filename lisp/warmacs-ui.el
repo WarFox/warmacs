@@ -17,9 +17,10 @@
   :config
   (nerd-icons-completion-mode)
   :hook
-  ('marginalia-mode . #'nerd-icons-completion-marginalia-setup))
+  (marginalia-mode . #'nerd-icons-completion-marginalia-setup))
 
 (use-package doom-themes
+  :demand t
   :custom
   ;; Global settings (defaults)
   (doom-themes-enable-bold t)   ; if nil, bold is universally disabled
@@ -36,7 +37,7 @@
   (doom-modeline-height 15)
   :hook
   (elpaca-after-init . doom-modeline-mode)
-  :init
+  :config
   (column-number-mode 1)
   (size-indication-mode 1))
 
