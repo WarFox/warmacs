@@ -348,6 +348,7 @@
 
 (use-package org-table
   :ensure nil
+  :after org
   :config
   (defun markdown-org-table-align-advice ()
     "Replace \"+\" sign with \"|\" in tables."
@@ -368,7 +369,7 @@
   :after org)
 
 (use-package org-roam-protocol
-             :ensure nil
+  :ensure nil
   :if org-enable-roam-protocol
   :after org-protocol)
 
