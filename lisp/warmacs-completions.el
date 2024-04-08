@@ -230,12 +230,26 @@
     "ry" #'consult-yank-pop
     "Ts" #'consult-theme))
 
+(use-package consult-dir
+  :after
+  (consult)
+  :custom
+  (consult-dir-project-list-function #'consult-dir-projectile-dirs)
+  :general
+  (general-def
+    [remap list-directory] #'consult-dir)
+  (general-def
+    :keymaps '(vertico-map)
+    "C-x C-d" #'consult-dir
+    "C-x C-f" #'consult-dir-jump-file))
+
 (use-package consult-projectile
   :after (consult projectile))
 
 (use-package consult-flycheck
   :after (consult flycheck))
 
+;; Embark - act on completion candidates and more
 (use-package embark
   :general
   (general-def
