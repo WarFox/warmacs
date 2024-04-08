@@ -28,7 +28,12 @@
     "di" #'docker-images
     "dp" #'docker-containers))
 
+(use-package docker-compose-mode
+  :mode "docker-compose.yml\\'")
+
+;; tram container is built in
 (use-package tramp-container
+  :ensure nil
   :after (docker dockerfile-mode)
   :general
   (warmacs/leader-menu-Applications
