@@ -19,6 +19,8 @@
   (which-key-mode 1)
   :custom
   (which-key-idle-delay 0.1)
+  (which-key-sort-uppercase-first nil)
+  (which-key-sort-order 'which-key-key-order-alpha)
   :diminish
   which-key-mode)
 
