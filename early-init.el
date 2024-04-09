@@ -35,12 +35,24 @@
 ;; UX: Respect DEBUG envvar as an alternative to --debug-init, and to make
 ;;   startup sufficiently verbose from this point on.
 (when (getenv-internal "DEBUG")
-  (setq init-file-debug t
-        debug-on-error t))
+  (setq init-file-debug t))
 
 ;; Reduce debug output unless we've asked for it.
 (setq debug-on-error init-file-debug
       jka-compr-verbose init-file-debug)
+
+(when init-file-debug
+  (message "Emacs is starting in debug mode...")
+  (setq-default use-package-verbose t
+                use-package-expand-minimally nil
+                use-package-compute-statistics t
+                debug-on-error t)
+
+  ;; Start the built-in profiler during debug mode
+  (when (fboundp 'profiler-start)
+    (profiler-start 'cpu)
+    (add-hook 'after-init-hook #'profiler-report)))
+
 ;;
 ;;; Bootstrap
 
