@@ -19,18 +19,12 @@
   :bind
   ("C-x C-b" . persp-list-buffers)         ; or use a nicer switcher, see below
   :custom
-  ;; Setp persp-conf directory inside warmacs-cache
-  (persp-save-dir (concat warmacs-cache-dir "persp-confs/"))
   (persp-mode-prefix-key (kbd "C-c M-p"))  ; pick your own prefix key here
-  (persp-add-on-switch-or-display t)
-  (persp-add-on-buffer-management t)
-  (persp-auto-resume-time -1)
-  (persp-nil-name "default")
-  (persp-nil-hidden t)
-  (persp-autokill-buffer-on-remove 'kill-weak)
+  (persp-avoid-killing-last-buffer-in-perspective t)
   :general-config
   (warmacs/leader-menu "Layouts" "l"
     :prefix-map 'perspective-map
+    "d" #'persp-kill
     "l" #'persp-switch))
 
 (provide 'warmacs-layouts)
