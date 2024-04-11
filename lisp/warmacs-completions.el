@@ -146,6 +146,7 @@
     [remap projectile-switch-to-buffer]   #'consult-project-buffer
     [remap projectile-switch-project]     #'consult-projectile-switch-project
     [remap projectile-find-file]          #'consult-projectile-find-file
+    [remap projectile-recentf]            #'consult-projectile-recentf
     [remap yank-pop]                      #'consult-yank-pop
     [remap vc-git-grep]                   #'consult-git-grep
     [remap Info-search]                   #'consult-info
@@ -192,18 +193,6 @@
     ;; Isearch integration
     "M-s e" #'consult-isearch-history)
 
-  (general-def
-    :keymaps 'isearch-mode-map
-    "M-e"   #'consult-isearch-history       ;; orig. isearch-edit-string
-    "M-s e" #'consult-isearch-history       ;; orig. isearch-edit-string
-    "M-s l" #'consult-line                  ;; needed by consult-line to detect isearch
-    "M-s L" #'consult-line-multi)            ;; needed by consult-line to detect isearch
-  ;; Minibuffer history
-  (general-def
-    :keymaps 'minibuffer-local-map
-    "M-s" #'consult-history                 ;; orig. next-matching-history-element
-    "M-r" #'consult-history)                ;; orig. previous-matching-history-element
-
   (warmacs/set-leader-keys
     "#" #'consult-register
     "*" #'warmacs/search-default
@@ -228,7 +217,20 @@
     "sd" #'warmacs/search-current-directory
     "sp" #'warmacs/search-project-root
     "ry" #'consult-yank-pop
-    "Ts" #'consult-theme))
+    "Ts" #'consult-theme)
+
+  :general-config
+  (general-def
+    :keymaps 'isearch-mode-map
+    "M-e"   #'consult-isearch-history       ;; orig. isearch-edit-string
+    "M-s e" #'consult-isearch-history       ;; orig. isearch-edit-string
+    "M-s l" #'consult-line                  ;; needed by consult-line to detect isearch
+    "M-s L" #'consult-line-multi)            ;; needed by consult-line to detect isearch
+  ;; Minibuffer history
+  (general-def
+    :keymaps 'minibuffer-local-map
+    "M-s" #'consult-history                 ;; orig. next-matching-history-element
+    "M-r" #'consult-history))                ;; orig. previous-matching-history-element
 
 (use-package consult-dir
   :after
