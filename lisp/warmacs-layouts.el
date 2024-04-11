@@ -14,14 +14,16 @@
 
 ;; original persp-mode
 (use-package perspective
-  :hook
-  (elpaca-after-init . persp-mode)
-  :bind
-  ("C-x C-b" . persp-list-buffers)         ; or use a nicer switcher, see below
   :custom
   (persp-mode-prefix-key (kbd "C-c M-p"))  ; pick your own prefix key here
   (persp-avoid-killing-last-buffer-in-perspective t)
+  :init
+  (setq persp-state-default-file (expand-file-name "persp-state" warmacs-cache-dir))
+  ;; initiates persp-mode
+  (persp-state-load persp-state-default-file)
   :general-config
+  (general-def
+    "C-x C-b" #'persp-list-buffers) ; or use a nicer switcher, see below
   (warmacs/leader-menu "Layouts" "l"
     :prefix-map 'perspective-map
     "d" #'persp-kill

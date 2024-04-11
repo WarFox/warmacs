@@ -3,6 +3,8 @@
 ;; Quit/Restart menu
 
 (use-package restart-emacs
+  ;; we are using lambdas as general keybindings
+  ;; so we need to autoload restart-emacs using commands
   :commands (restart-emacs restart-emacs-start-new-emacs)
   :preface
   (defun warmacs/restart-emacs (&optional args)
@@ -16,6 +18,8 @@
     (kill-emacs args))
   :after
   (files)
+  :hook
+  (kill-emacs . persp-state-save)
   :init
   ;; unbind 'restart-emacs to avoid conflict with built-in function in files.el
   ;; https://github.com/syl20bnr/spacemacs/pull/16186/files
