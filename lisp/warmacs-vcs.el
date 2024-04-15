@@ -48,7 +48,11 @@
   (warmacs/leader-menu "git" "g"
     "t" #'git-timemachine-help))
 
-(use-package git-modes)
+(use-package git-modes
+  :mode
+  ("\\.gitconfig\\'" . gitconfig-mode)
+  ("\\.gitignore\\'" . gitignore-mode)
+  ("\\.gitattributes\\'" . gitattributes-mode))
 
 (use-package gitignore-templates
   :general

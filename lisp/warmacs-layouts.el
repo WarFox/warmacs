@@ -10,7 +10,8 @@
 
 (use-package persp-projectile
   :demand t
-  :after (perspective projectile)) ;; persp-mode extension for projectile
+  :after
+  (perspective projectile)) ;; persp-mode extension for projectile
 
 ;; original persp-mode
 (use-package perspective

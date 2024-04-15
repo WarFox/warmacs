@@ -1,7 +1,8 @@
 ;; warmacs-treemacs.el -*- lexical-binding: t; -*-
 
 (use-package treemacs
-  :commands (treemacs treemacs-find-file)
+  :commands
+  (treemacs treemacs-find-file)
   :init
   (with-eval-after-load 'winum
     (define-key winum-keymap (kbd "M-0") #'treemacs-select-window))
@@ -92,22 +93,27 @@
 
 (use-package treemacs-evil
   :demand t
-  :after (treemacs evil))
+  :after
+  (treemacs evil))
 
 ;; Treemacs respects perspectives
 (use-package treemacs-perspective
   :demand t
-  :after (treemacs perspective)
+  :after
+  (treemacs perspective)
   :config
   (treemacs-set-scope-type 'Perspectives))
 
 (use-package treemacs-magit
   :demand t
-  :after (treemacs magit))
+  :after
+  (treemacs magit))
 
 (use-package treemacs-icons-dired
-  :hook (dired-mode . treemacs-icons-dired-enable-once)
-  :after (treemacs dired))
+  :hook
+  (dired-mode . treemacs-icons-dired-enable-once)
+  :after
+  (treemacs dired))
 
 (use-package treemacs-nerd-icons
   :demand t

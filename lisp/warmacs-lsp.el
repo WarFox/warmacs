@@ -7,7 +7,7 @@
 
 ;; LSP
 (use-package lsp-ui
-  :general
+  :general-config
   (general-def
     :keymaps 'lsp-ui-mode-map
     :states 'normal
@@ -19,10 +19,11 @@
   ([remap xref-find-references] #'lsp-ui-peek-find-references))
 
 (use-package consult-lsp
-  :after (lsp-mode))
+  :after lsp-mode)
 
 (use-package lsp-treemacs
-  :after (lsp-mode treemacs))
+  :after
+  (lsp-mode treemacs))
 
 (use-package lsp-mode
   :hook
@@ -107,6 +108,7 @@
 
 (use-package dap-mode
   :after lsp-mode
-  :config (dap-auto-configure-mode))
+  :config
+  (dap-auto-configure-mode))
 
 (provide 'warmacs-lsp)

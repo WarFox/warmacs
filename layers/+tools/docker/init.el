@@ -1,7 +1,8 @@
 ;; +tools/docker/init.el -*- lexical-binding: t; -*-
 
 (use-package docker
-  :commands (docker docker-images docker-containers)
+  :commands
+  (docker docker-images docker-containers)
   :general
   (warmacs/leader-menu-Applications
     "d" '(:ignore t :wk "Docker")
@@ -34,7 +35,8 @@
 ;; tram container is built in
 (use-package tramp-container
   :ensure nil
-  :after (docker dockerfile-mode)
+  :after
+  (docker dockerfile-mode)
   :general
   (warmacs/leader-menu-Applications
     "dt" #'tramp-containers)

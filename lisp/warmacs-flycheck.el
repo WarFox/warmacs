@@ -24,7 +24,8 @@ If the error list is visible, hide it.  Otherwise, show it."
       (flycheck-list-errors)
       (switch-to-buffer-other-window flycheck-error-list-buffer)))
 
-  :hook (prog-mode . flycheck-mode)
+  :hook
+  (prog-mode . flycheck-mode)
   :custom
   (flycheck-emacs-lisp-load-path 'inherit)
   :general-config

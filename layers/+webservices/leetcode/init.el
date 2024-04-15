@@ -1,7 +1,7 @@
 ;; +webservices/leetcode/init.el -*- lexical-binding: t; -*-
 
 (use-package leetcode
-  :commands (leetcode)
+  :commands leetcode
   :general
   (warmacs/leader-menu "Webservices" "W"
     "L" '(:ignore t :wk "LeetCode")

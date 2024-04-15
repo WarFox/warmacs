@@ -60,7 +60,8 @@ For use with `sbt:display-buffer-action'."
 
 (use-package sbt-mode
   :after scala-mode
-  :commands (sbt-start sbt-command)
+  :commands
+  (sbt-start sbt-command)
   :config
   ;; WORKAROUND: https://github.com/hvesalai/emacs-sbt-mode/issues/31
   ;; allows for using SPACE in the minibuffer

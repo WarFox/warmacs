@@ -13,7 +13,8 @@
   (dired-mode . nerd-icons-dired-mode))
 
 (use-package nerd-icons-completion
-  :after (marginalia nerd-icons)
+  :after
+  (marginalia nerd-icons)
   :config
   (nerd-icons-completion-mode)
   :hook

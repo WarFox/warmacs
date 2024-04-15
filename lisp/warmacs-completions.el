@@ -7,7 +7,8 @@
 (use-package consult
   ;; Enable automatic preview at point in the *Completions* buffer. This is
   ;; relevant when you use the default completion UI.
-  :hook (completion-list-mode . consult-preview-at-point-mode)
+  :hook
+  (completion-list-mode . consult-preview-at-point-mode)
 
   :custom
   ;; Use Consult to select xref locations with preview
@@ -16,23 +17,19 @@
 
   ;; The :init configuration is always executed (Not lazy)
   :init
-
   ;; Optionally configure the register formatting. This improves the register
   ;; preview for `consult-register', `consult-register-load',
   ;; `consult-register-store' and the Emacs built-ins.
   (setq register-preview-delay 0.5
         register-preview-function #'consult-register-format)
-
   ;; Optionally tweak the register preview window.
   ;; This adds thin lines, sorting and hides the mode line of the window.
   (advice-add #'register-preview :override #'consult-register-window)
-
   (advice-add #'multi-occur :override #'consult-line-multi)
-
   ;; Configure other variables and modes in the :config section,
   ;; after lazily loading the package.
-  :preface
 
+  :preface
   (defun warmacs/--active-region-or-thing-at-point ()
     "Get the active region or thing at point."
     (interactive)
@@ -104,16 +101,9 @@
    consult--source-recent-file consult--source-project-recent-file
    ;; :preview-key "M-."
    :preview-key '(:debounce 0.4 any))
-
   ;; Optionally configure the narrowing key.
   ;; Both < and C-+ work reasonably well.
   (setq consult-narrow-key "<") ;; "C-+"
-
-  ;; Optionally make narrowing help available in the minibuffer.
-  ;; You may want to use `embark-prefix-help-command' or which-key instead.
-  ;; (define-key consult-narrow-map (vconcat consult-narrow-key "?") #'consult-narrow-help)
-
-
   ;; By default `consult-project-function' uses `project-root' from project.el.
   ;; Optionally configure a different project root function.
   ;;;; 1. project.el (the default)
@@ -233,8 +223,7 @@
     "M-r" #'consult-history))                ;; orig. previous-matching-history-element
 
 (use-package consult-dir
-  :after
-  (consult)
+  :after consult
   :custom
   (consult-dir-project-list-function #'consult-dir-projectile-dirs)
   :general
@@ -246,10 +235,12 @@
     "C-x C-f" #'consult-dir-jump-file))
 
 (use-package consult-projectile
-  :after (consult projectile))
+  :after
+  (consult projectile))
 
 (use-package consult-flycheck
-  :after (consult flycheck))
+  :after
+  (consult flycheck))
 
 ;; Embark - act on completion candidates and more
 (use-package embark
@@ -258,14 +249,10 @@
     "C-." #'embark-act         ;; pick some comfortable binding
     "C-;" #'embark-dwim        ;; good alternative: M-.
     "C-h B" #'embark-bindings) ;; alternative for `describe-bindings'
-
   :init
-
   ;; Optionally replace the key help with a completing-read interface
   (setq prefix-help-command #'embark-prefix-help-command)
-
   :config
-
   ;; Hide the mode line of the Embark live/completions buffers
   (add-to-list 'display-buffer-alist
                '("\\`\\*Embark Collect \\(Live\\|Completions\\)\\*"
@@ -273,7 +260,8 @@
                  (window-parameters (mode-line-format . none)))))
 
 (use-package embark-consult
-  :after (embark consult)
+  :after
+  (embark consult)
   :hook
   (embark-collect-mode . consult-preview-at-point-mode))
 
@@ -424,7 +412,7 @@
 ;; Use wgrep to edit grep results
 ;; Useful with embark-export
 (use-package wgrep
-  :after '(evil-collection)
+  :after evil-collection
   :custom
   (wgrep-auto-save-buffer t)
   (wgrep-change-readonly-file t)
@@ -433,7 +421,8 @@
 
 ;; Snippets
 (use-package yasnippet
-  :commands (yas-expand yas-hippie-try-expand yas-global-mode yas-minor-mode yas-activate-extra-mode)
+  :commands
+  (yas-expand yas-hippie-try-expand yas-global-mode yas-minor-mode yas-activate-extra-mode)
   :preface
   ;; We don't want undefined variable errors
   (defvar yas-global-mode nil)
@@ -451,11 +440,13 @@
   (yas-reload-all))
 
 (use-package yasnippet-snippets
-  :commands (yas-expand yas-hippie-try-expand)
+  :commands
+  (yas-expand yas-hippie-try-expand)
   :after yasnippet)
 
 (use-package consult-yasnippet
-  :after (consult yasnippet)
+  :after
+  (consult yasnippet)
   :general-config
   (warmacs/leader-menu "Insert" "i"
     "s" 'consult-yasnippet)

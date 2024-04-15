@@ -4,7 +4,10 @@
 ;; Window management
 
 ;;; Code:
-(use-package ace-window)
+(use-package ace-window
+  :general
+  (warmacs/leader-menu "Windows" "w"
+    "W"  #'ace-window))
 
 ;; Prefer popup windows for buffers that cause mild annoyance
 (use-package popwin
@@ -69,7 +72,6 @@
     "v"  #'split-window-right
     "V"  #'split-window-right-and-focus
     "w"  #'other-window
-    "W"  #'ace-window
     "x"  #'kill-buffer-and-window
     "/"  #'split-window-right
     "="  #'balance-windows-area))

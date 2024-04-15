@@ -7,8 +7,10 @@
   :commands sesman-start)
 
 (use-package cider
-  :commands (cider-jack-in cider-jack-in-clj cider-jack-in-cljs cider-jack-in-clj&cljs cider-connect)
-  :hook ((clojure-mode clojure-ts-mode) . cider-mode)
+  :commands
+  (cider-jack-in cider-jack-in-clj cider-jack-in-cljs cider-jack-in-clj&cljs cider-connect)
+  :hook
+  ((clojure-mode clojure-ts-mode) . cider-mode)
   :general-config
   (warmacs/set-local-leader-keys
     :keymaps '(clojure-mode-map clojure-ts-mode-map)
@@ -69,7 +71,8 @@
     "ss" #'cider-switch-to-last-clojure-buffer))
 
 (use-package clj-refactor
-  :hook ((clojure-mode clojure-ts-mode) . clj-refactor-mode)
+  :hook
+  ((clojure-mode clojure-ts-mode) . clj-refactor-mode)
   :preface
   (add-to-list 'elpaca-ignored-dependencies 'inflections)
   :config

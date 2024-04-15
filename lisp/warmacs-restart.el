@@ -5,7 +5,8 @@
 (use-package restart-emacs
   ;; we are using lambdas as general keybindings
   ;; so we need to autoload restart-emacs using commands
-  :commands (restart-emacs restart-emacs-start-new-emacs)
+  :commands
+  (restart-emacs restart-emacs-start-new-emacs)
   :preface
   (defun warmacs/restart-emacs (&optional args)
     (interactive)
@@ -16,8 +17,7 @@
     (if (not prompt)
         (save-some-buffers nil t))
     (kill-emacs args))
-  :after
-  (files)
+  :after files
   :hook
   (kill-emacs . persp-state-save)
   :init

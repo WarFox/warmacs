@@ -26,9 +26,10 @@
 (use-package htmlize)
 
 (use-package org
-  :mode ("\\.org\\'" . org-mode)
+  :mode
+  ("\\.org\\'" . org-mode)
   :ensure nil ;; org-mode is installed in warmacs-packages.el early in the startup process
-  :commands (orgtbl-mode)
+  :commands orgtbl-mode
   :init
   (setq org-clock-persist-file (concat warmacs-cache-dir
 				       "org-clock-save.el")
@@ -272,7 +273,8 @@
    "sr" #'org-agenda-refile))
 
 (use-package org-projectile
-  :commands (org-projectile-location-for-project)
+  :commands
+  (org-projectile-location-for-project)
   :general
   (warmacs/leader-menu-Applications
     "op" '(:ignore t :wk "project")
@@ -379,8 +381,8 @@
   (warmacs/leader-menu "Applications" "a"
     "oru" #'org-roam-ui-mode)
   (warmacs/set-local-leader-keys
-   :keymaps 'org-mode-map
-   "ru" #'org-roam-ui-mode)
+    :keymaps 'org-mode-map
+    "ru" #'org-roam-ui-mode)
   :config
   (setq org-roam-ui-sync-theme t
         org-roam-ui-follow t
