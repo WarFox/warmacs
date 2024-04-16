@@ -1,0 +1,38 @@
+#+title: Warmacs
+
+Emacs configuration heavily inspired by Doom and Spacemacs. Built for macOS and emacs version =30.0.5=
+
+* Core Principles
+
+** Speed
+
+No comproise on speed, gotta go fast.
+
+** Mnemonic Key Bindings
+
+All keybindings follow =mnemonic= pattern like Spacemacs.
+
+** Discoverable
+
+Great help features and documents.
+
+** Consistency
+
+No surprises, consistent workflow everywhere.
+
+** UX
+
+Consistent UX built around the capabilities of =use-package=, =elpaca.el=, =general.el=, =evil=, =consult=.
+
+** Evil
+
+Vim key bindings for you!
+
+** Programming
+
+Start programming in your favourite language right away. Supports
+=lsp= and =tree-sitter= out of the box for you programming experience.
+
+* License
+
+The license is GPLv3 for all parts specific to Warmacs.
