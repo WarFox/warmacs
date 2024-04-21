@@ -71,6 +71,7 @@
 ;; Ensure general.el is configured
 (elpaca-wait)
 
+;; Setup up main menu items
 (use-package emacs
   :ensure nil
   :general
@@ -103,5 +104,18 @@
     "y" #'yank-pop)
 
   (warmacs/leader-menu "Search" "s"))
+
+;; Setup up text editing menu items
+(use-package string-inflection
+  :general
+  (warmacs/leader-menu "Text" "x"
+    "i" '(:ignore t :wk "inflection")
+    "ic" #'string-inflection-lower-camelcase
+    "iC" #'string-inflection-camelcase
+    "i-" #'string-inflection-kebab-case
+    "ik" #'string-inflection-kebab-case
+    "i_" #'string-inflection-underscore
+    "iu" #'string-inflection-underscore
+    "iU" #'string-inflection-upcase))
 
 (provide 'warmacs-keybindings)
