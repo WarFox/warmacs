@@ -2,6 +2,8 @@
 
 (use-package rust-mode
   :mode ("\\.rs\\'" . rust-ts-mode)
+  :hook
+  (rust-ts-mode . lsp-deferred)
   :custom
   (rust-format-on-save t)
   :general-config

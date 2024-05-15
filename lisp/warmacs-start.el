@@ -142,6 +142,7 @@
 (require 'warmacs-flycheck)
 (require 'warmacs-terminal)
 (require 'warmacs-layouts)
+(require 'warmacs-lsp)
 (require 'default-layers)
 
 ;; Run Hooks
