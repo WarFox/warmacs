@@ -1,7 +1,12 @@
 ;; +lang/clojure/init.el -*- lexical-binding: t; -*-
 
+;; First install the package:
+(use-package flycheck-clj-kondo)
+
 (use-package clojure-ts-mode
-  :mode "\\.clj\\'")
+  :mode "\\.clj?s\\'"
+  :config
+  (require 'flycheck-clj-kondo))
 
 (use-package sesman
   :commands sesman-start)
@@ -68,7 +73,21 @@
     "sn" #'cider-repl-set-ns
     "sb" #'cider-switch-to-repl-buffer
     "sc" #'cider-connect
-    "ss" #'cider-switch-to-last-clojure-buffer))
+    "ss" #'cider-switch-to-last-clojure-buffer
+
+    "t" '(:ignore t :wk "tests")
+    "tF" #'cider-test-run-ns-tests-with-filters
+    "tN" #'cider-test-run-loaded-tests
+    "tT" #'cider-test-rerun-test
+    "tb" #'cider-test-show-report
+    "tf" #'cider-test-rerun-failed-tests
+    "tn" #'cider-test-run-ns-tests
+    "tp" #'cider-test-run-project-tests
+    "tt" #'cider-test-run-test
+
+    "T" '(:ignore t :wk "toggles")
+    "Tt" #'cider-auto-test-mode
+    "Tf" #'cider-test-toggle-fail-fast))
 
 (use-package clj-refactor
   :hook
