@@ -2,7 +2,7 @@
 
 (use-package python-mode
   :mode
-  ("\\.py\\'" . python-mode)
+  ("\\.py\\'" . python-ts-mode)
   :hook
   ((python-mode python-ts-mode) . flycheck-mode)
   :custom
@@ -19,9 +19,11 @@
     "'" #'run-python
     "b" '(:ignore t :wk "build")
     "bb"  #'poetry-build
-    "vod" 'poetry-venv-deactivate
-    "vow" 'poetry-venv-workon
-    "vot" 'poetry-venv-toggle))
+    "br"  #'poetry-run
+    "v" '(:ignore t :wk "venv")
+    "vd" 'poetry-venv-deactivate
+    "vw" 'poetry-venv-workon
+    "vt" 'poetry-venv-toggle))
 
 (use-package lsp-pyright
   :after python-mode
@@ -37,5 +39,14 @@
   :after python-mode
   :config
   (pyvenv-mode 1))
+
+(use-package python-pytest
+  :after python-ts-mode
+  :config
+  (python-pytest-mode 1)
+  :general-config
+  (warmacs/set-local-leader-keys
+    :keymaps '(python-mode-map python-ts-mode-map)
+    "t" '("test" . python-pytest-dispatch)))
 
 (provide '+lang/python/init)
