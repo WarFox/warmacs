@@ -68,27 +68,6 @@
 ;; Ensure gcmh-mode. This is activated by warmacs-first-buffer-hook
 (use-package gcmh)
 
-;;
-;; Evil mode
-(use-package evil
-  :demand t
-  :custom
-  (evil-want-integration t) ;; This is optional since it's already set to t by default.
-  (evil-want-keybinding nil) ;; set to nil to use evil-collection
-  :config
-  (evil-mode 1))
-
-(use-package evil-collection
-  :demand t
-  :after evil
-  :custom
-  (evil-collection-setup-minibuffer t)
-  :config
-  (evil-collection-init))
-
-(use-package evil-lisp-state
-  :after evil)
-
 ;; Unload and install seq, we need seq version higher than the one bundled with emacs
 
 ;; Elpaca checks for version requirement

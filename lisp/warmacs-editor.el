@@ -35,6 +35,36 @@
   ;; Enable auto-saving
   (auto-save-visited-mode 1))
 
+;;
+;; Evil mode
+(use-package evil
+  :demand t
+  :custom
+  (evil-want-integration t) ;; This is optional since it's already set to t by default.
+  (evil-want-keybinding nil) ;; set to nil to use evil-collection
+  :config
+  (evil-mode 1))
+
+(use-package evil-collection
+  :demand t
+  :after evil
+  :custom
+  (evil-collection-setup-minibuffer t)
+  :config
+  (evil-collection-init))
+
+(use-package evil-lisp-state
+  :after evil
+  :init
+  (require 'evil-lisp-state)
+  (setq evil-lisp-state-global t)
+  :general-config
+  (warmacs/leader-menu "lisp" "k"
+    :prefix-map 'evil-lisp-state-map
+    "d" '(:ignore t :wk "delete")
+    "D" '(:ignore t :wk "delete-backward")
+    "`" '(:ignore t :wk "hybrid")))
+
 (use-package evil-mc
   :after evil
   :hook
