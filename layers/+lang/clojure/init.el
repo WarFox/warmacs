@@ -4,7 +4,10 @@
 (use-package flycheck-clj-kondo)
 
 (use-package clojure-ts-mode
-  :mode "\\.clj?s\\'"
+  :mode
+  (("\\.clj\\'" . clojure-ts-mode)
+   ("\\.cljs\\'" . clojure-ts-clojurescript-mode)
+   ("\\.cljc\\'" . clojure-ts-clojurec-mode))
   :config
   (require 'flycheck-clj-kondo))
 
