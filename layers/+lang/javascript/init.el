@@ -23,7 +23,4 @@
 (use-package nodejs-repl
   :after js2-mode)
 
-(use-package prettier-js
-  :after js2-mode)
-
 (provide '+lang/javascript/init)

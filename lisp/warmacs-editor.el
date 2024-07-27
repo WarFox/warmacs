@@ -107,4 +107,8 @@
     "B" #'avy-pop-mark
     "r" #'avy-resume))
 
+(use-package apheleia
+  :config
+  (apheleia-global-mode +1))
+
 (provide 'warmacs-editor)

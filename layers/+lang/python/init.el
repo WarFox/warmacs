@@ -13,6 +13,12 @@
   (python-shell-completion-native-enable nil)
   (python-shell-prompt-output-regexp "Out\\[[0-9]+\\]: ")
   (python-shell-prompt-input-regexp "In \\[[0-9]+\\]: ")
+  :config
+  ;; Replace default (black) to use ruff for sorting import and formatting.
+  (setf (alist-get 'python-mode apheleia-mode-alist)
+        '(ruff-isort ruff))
+  (setf (alist-get 'python-ts-mode apheleia-mode-alist)
+        '(ruff-isort ruff))
   :general-config
   (warmacs/set-local-leader-keys
     :keymaps '(python-mode-map python-ts-mode-map)
