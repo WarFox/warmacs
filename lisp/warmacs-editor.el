@@ -53,18 +53,6 @@
   :config
   (evil-collection-init))
 
-(use-package evil-lisp-state
-  :after evil
-  :init
-  (require 'evil-lisp-state)
-  (setq evil-lisp-state-global t)
-  :general-config
-  (warmacs/leader-menu "lisp" "k"
-    :prefix-map 'evil-lisp-state-map
-    "d" '(:ignore t :wk "delete")
-    "D" '(:ignore t :wk "delete-backward")
-    "`" '(:ignore t :wk "hybrid")))
-
 (use-package evil-mc
   :after evil
   :hook
@@ -106,6 +94,62 @@
     "b" #'avy-pop-mark
     "B" #'avy-pop-mark
     "r" #'avy-resume))
+
+(use-package smartparens
+  :hook (prog-mode text-mode markdown-mode)
+  :config
+  (require 'smartparens-config)
+  :general-config
+  (warmacs/leader-menu "lisp" "k"
+    :keymaps 'smartparens-mode-map
+    "$"   #'sp-end-of-sexp
+    "`"   '(:ignore t :wk "hybrid")
+    "`k"  #'sp-kill-hybrid-sexp
+    "`p"  #'sp-push-hybrid-sexp
+    "`s"  #'sp-slurp-hybrid-sexp
+    "`t"  #'sp-transpose-hybrid-sexp
+    "1"   #'digit-argument
+    "2"   #'digit-argument
+    "3"   #'digit-argument
+    "4"   #'digit-argument
+    "5"   #'digit-argument
+    "6"   #'digit-argument
+    "7"   #'digit-argument
+    "8"   #'digit-argument
+    "9"   #'digit-argument
+    "a"   #'sp-absorb-sexp
+    "b"   #'sp-forward-barf-sexp
+    "B"   #'sp-backward-barf-sexp
+    "c"   #'sp-convolute-sexp
+    "D"   '(:ignore t :wk "delete-backward")
+    "Ds"  #'sp-backward-kill-symbol
+    "Dw"  #'sp-backward-kill-word
+    "Dx"  #'sp-backward-kill-sexp
+    "d"   '(:ignore t :wk "delete")
+    "ds"  #'sp-kill-symbol
+    "dw"  #'sp-kill-word
+    "dx"  #'sp-kill-sexp
+    "e"   #'sp-splice-sexp-killing-forward
+    "E"   #'sp-splice-sexp-killing-backward
+    "h"   #'sp-backward-symbol
+    "H"   #'sp-backward-sexp
+    "i"   #'evil-insert-state
+    "I"   #'evil-insert-line
+    "J"   #'sp-join-sexp
+    "L"   #'sp-forward-sexp
+    "p"   #'evil-paste-after
+    "P"   #'evil-paste-before
+    "r"   #'sp-raise-sexp
+    "s"   #'sp-forward-slurp-sexp
+    "S"   #'sp-backward-slurp-sexp
+    "t"   #'sp-transpose-sexp
+    "U"   #'sp-backward-up-sexp
+    "C-r" #'undo-tree-redo
+    "v"   #'evil-visual-char
+    "V"   #'evil-visual-line
+    "C-v" #'evil-visual-block
+    "W"   #'sp-unwrap-sexp
+    "y"   #'sp-copy-sexp))
 
 (use-package apheleia
   :config
