@@ -5,6 +5,8 @@
   :general
   (warmacs/set-local-leader-keys
     :keymaps 'emacs-lisp-mode-map
+    "=" '(:ignore t :wk "format")
+    "=a" #'align
     "c" '(:ignore t :wk "compile")
     "cc" #'emacs-lisp-byte-compile
     "e" '(:ignore t :wk "eval")
