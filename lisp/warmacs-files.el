@@ -94,7 +94,7 @@ renamed."
     "d" '("Delete a file" . warmacs/delete-file)
     "D" '("Delete current file" . warmacs/delete-current-buffer-file)
     "r" '("Recent files" . recentf)
-    "R" #'("Rename file" . warmacs/rename-current-buffer-file)
+    "R" '("Rename file" . warmacs/rename-current-buffer-file)
     "y" '(:ignore t :wk "Copy")
     "yy" #'warmacs/copy-file-path
     "yY" #'warmacs/projectile-copy-file-path))
