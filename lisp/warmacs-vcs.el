@@ -44,6 +44,8 @@
     "k" #'with-editor-cancel))
 
 (use-package git-timemachine
+  :commands
+  (git-timemachine-help)
   :general
   (warmacs/leader-menu "git" "g"
     "t" #'git-timemachine-help))
@@ -55,13 +57,14 @@
   ("\\.gitattributes\\'" . gitattributes-mode))
 
 (use-package gitignore-templates
+  :commands
+  (gitignore-templates-new-file gitignore-templates-insert)
   :general
   (warmacs/leader-menu "git" "g"
-    "fi" 'gitignore-templates-new-file)
-  :general-config
+    "fi" #'gitignore-templates-new-file)
   (warmacs/set-local-leader-keys
     :keymaps 'gitignore-mode-map
-    "i" 'gitignore-templates-insert))
+    "i" #'gitignore-templates-insert))
 
 (use-package git-link
   :general
