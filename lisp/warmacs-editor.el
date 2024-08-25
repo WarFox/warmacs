@@ -56,7 +56,7 @@
 (use-package evil-mc
   :after evil
   :hook
-  ((prog-mode org-mode markdown-mode) . evil-mc-mode)
+  ((prog-mode org-mode markdown-mode occur-mode grep-mode) . evil-mc-mode)
   :general
   (general-def
     :keymaps 'evil-normal-state-map
