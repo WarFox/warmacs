@@ -23,12 +23,13 @@
     "%" #'projectile-replace-regexp
     "a" #'projectile-toggle-between-implementation-and-test
     "b" #'projectile-switch-to-buffer
+    "B" #'projectile-switch-to-buffer-other-window
     "c" #'projectile-compile-project
     "d" #'projectile-find-dir
     "D" #'projectile-dired
     "e" #'projectile-edit-dir-locals
     "f" #'projectile-find-file
-    "F" #'projectile-find-file-dwim
+    "F" #'projectile-find-file-other-window
     "g" #'projectile-find-tag
     "G" #'projectile-regenerate-tags
     "I" #'projectile-invalidate-cache
