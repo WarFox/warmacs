@@ -120,13 +120,14 @@
 
   :general
   (general-def
+    :keymaps 'override
     [remap apropos]                                   #'consult-apropos
     [remap bookmark-jump]                             #'consult-bookmark
     [remap evil-show-marks]                           #'consult-mark
+    [remap Info-search]                               #'consult-info
     [remap evil-show-registers]                       #'consult-register
     [remap goto-line]                                 #'consult-goto-line
     [remap imenu]                                     #'consult-imenu
-    [remap Info-search]                               #'consult-info
     [remap load-theme]                                #'consult-theme
     [remap locate]                                    #'consult-locate
     [remap man]                                       #'consult-man
@@ -134,6 +135,7 @@
     [remap projectile-find-file-other-window]         #'consult-projectile-find-file-other-window
     [remap projectile-find-file]                      #'consult-projectile-find-file
     [remap projectile-recentf]                        #'consult-projectile-recentf
+    [remap projectile-switch-open-project]            #'consult-projectile
     [remap projectile-switch-project]                 #'consult-projectile-switch-project
     [remap projectile-switch-to-buffer-other-window]  #'consult-projectile-switch-to-buffer-other-window
     [remap projectile-switch-to-buffer]               #'consult-project-buffer
@@ -142,8 +144,9 @@
     [remap switch-to-buffer-other-window]             #'consult-buffer-other-window
     [remap switch-to-buffer]                          #'consult-buffer
     [remap vc-git-grep]                               #'consult-git-grep
-    [remap yank-pop]                                  #'consult-yank-pop
+    [remap yank-pop]                                  #'consult-yank-pop)
 
+  (general-def
     "C-s" #'consult-line
     ;; C-c bindings in `mode-specific-map'
     "C-c M-x" #'consult-mode-command
