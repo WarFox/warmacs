@@ -17,31 +17,28 @@
   (projectile-mode 1)
   :general
   (warmacs/leader-menu "Projects" "p"
-    "!" #'projectile-run-shell-command-in-root
-    "&" #'projectile-run-async-shell-command-in-root
+    "p" #'projectile-switch-project
+    "l" #'projectile-switch-open-project)
+  :general-config
+  (warmacs/leader-menu "Projects" "p"
+    :prefix-map 'projectile-command-map ;; extend projectile command map
     "/" #'projectile-ripgrep
     "%" #'projectile-replace-regexp
+    "4" '(:ignore t :wk "other-window")
+    "5" '(:ignore t :wk "other-frame")
     "a" #'projectile-toggle-between-implementation-and-test
-    "b" #'projectile-switch-to-buffer
     "B" #'projectile-switch-to-buffer-other-window
-    "c" #'projectile-compile-project
-    "d" #'projectile-find-dir
-    "D" #'projectile-dired
-    "e" #'projectile-edit-dir-locals
-    "f" #'projectile-find-file
+    "ESC" #'keyboard-escape-quit
     "F" #'projectile-find-file-other-window
-    "g" #'projectile-find-tag
     "G" #'projectile-regenerate-tags
-    "I" #'projectile-invalidate-cache
-    "k" #'projectile-kill-buffers
     "K" #'projectile-reset-known-projects
     "l" #'projectile-switch-open-project
-    "p" #'projectile-switch-project
     "r" #'projectile-recentf
     "R" #'projectile-replace
-    "S" #'projectile-save-project-buffers
+    "s" '(:ignore t :wk "search")
     "t" #'treemacs
     "T" #'projectile-test-project
-    "v" #'projectile-vc))
+    "x" '(:ignore t :wk "x!")
+    "x4" '(:ignore t :wk "other-window")))
 
 (provide 'warmacs-projects)
